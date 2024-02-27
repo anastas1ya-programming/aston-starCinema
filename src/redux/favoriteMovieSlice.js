@@ -14,7 +14,6 @@ export const favoriteMovieSlice = createSlice({
 
             },
             deleteMovieFromFavorite(state, action) {
-                debugger;
                 state.favoriteMovies = state.favoriteMovies.filter(movie => movie.id !== action.payload)
             },
 

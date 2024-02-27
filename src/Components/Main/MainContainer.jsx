@@ -1,68 +1,33 @@
 import Main from "./Main.jsx";
-import {useEffect, useState} from "react";
 import {store} from "../../redux/store.js";
+import {useGetMoviesQuery} from '../../redux/movieApi.js'
 
 const MainContainer = (props) => {
-    const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'shortDescription', 'description'];
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'shortDescription', 'description'];
+    const params = new URLSearchParams({
+        year: '2023',
+        limit: '20',
+        'rating.imdb': '8-10',
 
-                const params = new URLSearchParams({
-                    year: '2023',
-                    limit: '20',
-                    'rating.imdb': '8-10',
+    });
+    selectFields.forEach(field => {
+        params.append('selectFields', field);
+    });
 
-                });
-                selectFields.forEach(field => {
-                    params.append('selectFields', field);
-                });
-
-
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'X-API-KEY': 'ZET3EKN-MGJ4H00-GPBRZFA-RDMMFW5',
-                };
-
-
-                const response = await fetch(`https://api.kinopoisk.dev/v1.4/movie?${params}`, {headers});
-
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-
-                const result = await response.json();
-
-                setMovies(result);
-                setIsLoading(false);
-            } catch (error) {
-
-                setError(error);
-                setIsLoading(false);
-            }
-        };
-
-
-        fetchData();
-    }, []);
+    const {data: movies, isError, isLoading} = useGetMoviesQuery(params);
 
     if (isLoading) {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        return <p>Error: {error.message}</p>;
+    if (isError) {
+        return <p>Error occurred while loading movies!</p>;
     }
 
-    return (
 
-        <Main movies={movies.docs} store = {store}/>
+    return (
+        <Main movies={movies.docs} store={store}/>
     )
 }
 export default MainContainer
