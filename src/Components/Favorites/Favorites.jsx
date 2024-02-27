@@ -1,9 +1,16 @@
-import heart from "../../assets/heart.png"
-import c from './Favorites.module.css'
-const Favorites = () =>{
+import CardItem from "../Main/CardItem/CardItem.jsx";
+const Favorites = (props) =>{
+    let movieElements = props.movies.map(movie =>
+        <CardItem title={movie.name} key={movie.id}
+                  poster={movie.poster.url}
+                  shortDescription={movie.shortDescription}
+                  id={movie.id}
+        />
+    )
+
     return(
         <div>
-            <img className={c.img} src={heart} alt="favorites"/>
+            {movieElements}
         </div>
     )
 }

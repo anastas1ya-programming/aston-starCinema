@@ -17,6 +17,9 @@ const CardItem = (props) => {
 
         }
     };
+    const updatedFavoriteMovies = isMovieLiked
+        ? favoriteMovies.filter((movie) => movie.id !== props.id)
+        : favoriteMovies;
 
 
     return (
