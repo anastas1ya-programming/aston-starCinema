@@ -8,7 +8,7 @@ import Favorites from "./Components/Favorites/Favorites.jsx";
 import History from "./Components/History/History.jsx";
 import MainContainer from "./Components/Main/MainContainer.jsx";
 
-function App() {
+function App(props) {
 
     return (
         <div className="app-wrapper">

@@ -1,5 +1,6 @@
 import Main from "./Main.jsx";
 import {useEffect, useState} from "react";
+import {store} from "../../redux/store.js";
 
 const MainContainer = (props) => {
     const [movies, setMovies] = useState([]);
@@ -58,10 +59,10 @@ const MainContainer = (props) => {
     if (error) {
         return <p>Error: {error.message}</p>;
     }
-    debugger;
+
     return (
 
-        <Main movies={movies.docs}/>
+        <Main movies={movies.docs} store = {store}/>
     )
 }
 export default MainContainer

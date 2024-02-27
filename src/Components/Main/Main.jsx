@@ -3,7 +3,7 @@ import CardItem from "./CardItem/CardItem.jsx";
 const Main = (props) => {
 
     let movieElements = props.movies.map(movie =>
-        <CardItem title={movie.name}
+        <CardItem title={movie.name} key={movie.id}
                   poster={movie.poster.url}
                   shortDescription={movie.shortDescription}
                   id={movie.id}
