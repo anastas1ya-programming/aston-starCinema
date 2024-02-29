@@ -3,8 +3,8 @@ import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import {Route, Routes} from "react-router-dom";
 import History from "./Components/History/History.jsx";
-import MainContainer from "./Components/Main/MainContainer.jsx";
-import FavoritesContainer from "./Components/Favorites/FavoritesContainer.jsx";
+import Main from "./Components/Main/Main.jsx";
+import Favorites from "./Components/Favorites/Favorites.jsx";
 
 function App(props) {
 
@@ -13,9 +13,10 @@ function App(props) {
             <Header></Header>
             <div >
                 <Routes>
-                    <Route path="/" element={<MainContainer/>}/>
+                    <Route path="/" element={<Main/>}/>
                     <Route path="/history" element={<History/>}/>
-                    <Route path="/favorites" element={<FavoritesContainer/>}/>
+                    <Route path="/favorites" element={<Favorites/>}/>
+
                 </Routes>
 
 
