@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleFavorites} from '../../../redux/favoriteMovieSlice.js'
+import { toggleFavorites } from '../../../redux/favoriteMovieSlice.js';
 
 const CardItem = (props) => {
 
@@ -25,7 +25,7 @@ const CardItem = (props) => {
 
                 <div className="card-footer d-flex justify-content-between align-items-center">
                     <button onClick={() => {
-                        dispatch(toggleFavorites( {id: props.id}))
+                        dispatch(toggleFavorites(  props.card))
 
                     }} className="btn btn-primary ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
                     <NavLink to={path} className="card-link">Подробнее</NavLink>

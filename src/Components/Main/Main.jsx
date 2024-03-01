@@ -15,7 +15,6 @@ const Main = (props) => {
         params.append('selectFields', field);
     });
 
-
     const {data: movies, isError, isLoading} = useGetMoviesQuery(params);
 
     if (isLoading) {
@@ -37,6 +36,7 @@ const Main = (props) => {
                           poster={movie.poster.url}
                           shortDescription={movie.shortDescription}
                           id={movie.id}
+                          card={movie}
                 />
                 )}
             </div>
