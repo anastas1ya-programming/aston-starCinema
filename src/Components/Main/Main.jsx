@@ -25,7 +25,7 @@ const Main = (props) => {
         return <p>Error occurred while loading movies!</p>;
     }
 
-    console.log(movies)
+
 
 
     return (

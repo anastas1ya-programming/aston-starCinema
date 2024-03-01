@@ -1,6 +1,5 @@
 import {useSelector} from "react-redux";
 import CardItem from "../Main/CardItem/CardItem.jsx";
-import {useGetFavoriteMoviesQuery} from "../../api/api.js";
 
 // const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'shortDescription', 'description'];
 
@@ -11,7 +10,7 @@ const Favorites = () => {
     // });
     const {favoriteMovie} = useSelector(state => state)
     // const favIds = favoriteMovie.map(obj => obj.id) || [];
-    // favIds.forEach(id => {s
+    // favIds.forEach(id => {
     //     params.append('id', id);
     // });
 

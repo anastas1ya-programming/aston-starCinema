@@ -7,7 +7,7 @@ const movieApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.kinopoisk.dev/',
         prepareHeaders: (headers) => {
-           const API_KEY = 'GCB4F62-3N3M73C-M6924VJ-ACG23C3'
+            const API_KEY = 'ZET3EKN-MGJ4H00-GPBRZFA-RDMMFW5'
             headers.set('Content-Type', 'application/json');
             headers.set('X-API-KEY', API_KEY);
             return headers;
@@ -18,19 +18,23 @@ const movieApi = createApi({
 
         getMovies: builder.query({
             query: (args) => {
-
+                    debugger
                 const params = new URLSearchParams(args);
-                 return {url: `v1.4/movie?${params.toString()}`};
+                return {url: `v1.4/movie?${params.toString()}`};
             }
         }),
-        getFavoriteMovies: builder.query({
-            query: (args) =>{
+
+        getDetailedInfo: builder.query({
+            query: (args) => {
+                debugger
                 const params = new URLSearchParams(args)
                 return {url: `v1.4/movie?${params.toString()}`};
             }
-        })
+        }),
+
+
 
     })
 })
-export const {useGetMoviesQuery, useGetFavoriteMoviesQuery} = movieApi;
+export const {useGetMoviesQuery, useGetDetailedInfoQuery} = movieApi;
 export default movieApi;

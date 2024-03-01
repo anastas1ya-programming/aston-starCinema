@@ -1,16 +1,16 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { toggleFavorites } from '../../../redux/favoriteMovieSlice.js';
 
 const CardItem = (props) => {
-
-    let path = '/movie/' + props.id
 
     const dispatch = useDispatch()
 
     const {favoriteMovie} = useSelector(state => state)
 
     const isMovieLiked = favoriteMovie.some(movie => movie.id === props.id)
+
+    const navigate = useNavigate();
 
     return (
         <div className="col mb-4">
@@ -27,8 +27,8 @@ const CardItem = (props) => {
                     <button onClick={() => {
                         dispatch(toggleFavorites(  props.card))
 
-                    }} className="btn btn-primary ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
-                    <NavLink to={path} className="card-link">Подробнее</NavLink>
+                    }} className="btn btn-danger ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
+                    <button onClick={()=>navigate(`/detailed/${props.id}`)} className="btn btn-info">Подробнее</button>
 
                 </div>
             </div>
