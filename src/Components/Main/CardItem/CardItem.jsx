@@ -12,7 +12,6 @@ const CardItem = (props) => {
 
     const navigate = useNavigate();
 
-
     return (
         <div className="col mb-4">
             <div className="card m-auto mb-2 h-100" style={{width: "18rem"}}>
@@ -30,7 +29,6 @@ const CardItem = (props) => {
 
                     }} className="btn btn-danger ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
                     <button onClick={() => navigate(`/detailed/${props.id}`)} className="btn btn-info">Details</button>
-                    {/*<Link to={`/detailed/${props.id}`} >Подробнее</Link>*/}
 
                 </div>
             </div>

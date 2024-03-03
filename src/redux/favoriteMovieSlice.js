@@ -3,7 +3,6 @@ import {getFavoritesLS, setFavoritesLS} from "../utils/localStorageUtils.js";
 
 let initialState = getFavoritesLS();
 
-
 export const favoriteMovieSlice = createSlice({
     name: 'favoriteMovie',
     initialState,

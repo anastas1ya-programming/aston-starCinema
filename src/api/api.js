@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-
 const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'description', 'genres', 'movieLength', 'seriesLength', 'totalSeriesLength', 'backdrop'];
 const movieApi = createApi({
 
@@ -18,7 +17,6 @@ const movieApi = createApi({
 
         getMovies: builder.query({
             query: (args) => {
-
                 const params = new URLSearchParams(args);
                 return {url: `v1.4/movie?${params.toString()}`};
             }

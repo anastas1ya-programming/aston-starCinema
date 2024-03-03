@@ -1,6 +1,5 @@
 import CardItem from "./CardItem/CardItem.jsx";
 import {useGetMoviesQuery} from "../../api/api.js";
-import {useState} from "react";
 
 const Main = (props) => {
 

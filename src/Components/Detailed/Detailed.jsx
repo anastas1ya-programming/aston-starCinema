@@ -1,10 +1,8 @@
 import {useGetDetailedInfoQuery,} from "../../api/api.js";
 import s from "./Detailed.module.css"
 import {useNavigate, useParams} from "react-router-dom";
-import {toggleFavorites} from "../../redux/favoriteMovieSlice.js";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import {useActions} from "../../Hooks/useActions.js";
-
 
 const Detailed = (props) => {
     const {toggleFavorites} = useActions();
