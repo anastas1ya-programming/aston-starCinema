@@ -12,19 +12,18 @@ function App(props) {
     return (
         <div className="app-wrapper">
             <Header></Header>
-            <div >
+            <div>
                 <Routes>
                     <Route path="/" element={<Main/>}/>
                     <Route path="/history" element={<History/>}/>
                     <Route path="/favorites" element={<Favorites/>}/>
                     <Route path="/detailed/:id" element={<Detailed/>}/>
-
                 </Routes>
-
-
             </div>
             <Footer></Footer>
+
         </div>
+
     )
 }
 

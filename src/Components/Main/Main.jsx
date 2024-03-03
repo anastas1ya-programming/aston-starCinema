@@ -1,5 +1,6 @@
 import CardItem from "./CardItem/CardItem.jsx";
 import {useGetMoviesQuery} from "../../api/api.js";
+import {useState} from "react";
 
 const Main = (props) => {
 
@@ -8,8 +9,7 @@ const Main = (props) => {
     const params = new URLSearchParams({
         year: '2023',
         limit: '20',
-        'rating.imdb': '8-10',
-
+        'rating.imdb': '8-10'
     });
     selectFields.forEach(field => {
         params.append('selectFields', field);
@@ -24,9 +24,6 @@ const Main = (props) => {
     if (isError) {
         return <p>Error occurred while loading movies!</p>;
     }
-
-
-
 
     return (
         <div className="container">

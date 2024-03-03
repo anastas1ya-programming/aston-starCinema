@@ -1,27 +1,11 @@
 import {useSelector} from "react-redux";
 import CardItem from "../Main/CardItem/CardItem.jsx";
 
-// const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'shortDescription', 'description'];
-
 const Favorites = () => {
-    // const params = new URLSearchParams();
-    // selectFields.forEach(field => {
-    //     params.append('selectFields', field);
-    // });
+
     const {favoriteMovie} = useSelector(state => state)
-    // const favIds = favoriteMovie.map(obj => obj.id) || [];
-    // favIds.forEach(id => {
-    //     params.append('id', id);
-    // });
 
-
-   // const {data: movies, isError, isLoading} = useGetFavoriteMoviesQuery(params);
-
-    // if (isLoading) {
-    //     return <p>Loading...</p>;
-    // }
-    //
-    if (favoriteMovie.length===0) {
+    if (favoriteMovie.length === 0) {
         return <div className="container"><h3>You have not added anything yet!</h3></div>;
     }
     return (

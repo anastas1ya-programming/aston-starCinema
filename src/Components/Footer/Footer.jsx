@@ -1,6 +1,8 @@
-const Footer = (props) =>{
-    return(
-        <div>This footer</div>
+const Footer = () => {
+    return (
+        <div className="container">Footer</div>
     )
-}
-export default Footer
+
+
+        }
+        export default Footer;
