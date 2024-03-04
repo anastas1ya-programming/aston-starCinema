@@ -8,13 +8,11 @@ const Main = (props) => {
     const params = new URLSearchParams({
         year: '2023',
         limit: '20',
-        'rating.imdb': '8-10',
-
+        'rating.imdb': '8-10'
     });
     selectFields.forEach(field => {
         params.append('selectFields', field);
     });
-
 
     const {data: movies, isError, isLoading} = useGetMoviesQuery(params);
 
@@ -26,9 +24,6 @@ const Main = (props) => {
         return <p>Error occurred while loading movies!</p>;
     }
 
-    console.log(movies)
-
-
     return (
         <div className="container">
             <div className="row ">
@@ -37,6 +32,7 @@ const Main = (props) => {
                           poster={movie.poster.url}
                           shortDescription={movie.shortDescription}
                           id={movie.id}
+                          card={movie}
                 />
                 )}
             </div>

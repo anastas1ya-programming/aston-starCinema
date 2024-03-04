@@ -5,24 +5,25 @@ import {Route, Routes} from "react-router-dom";
 import History from "./Components/History/History.jsx";
 import Main from "./Components/Main/Main.jsx";
 import Favorites from "./Components/Favorites/Favorites.jsx";
+import Detailed from "./Components/Detailed/Detailed.jsx";
 
 function App(props) {
 
     return (
         <div className="app-wrapper">
             <Header></Header>
-            <div >
+            <div>
                 <Routes>
                     <Route path="/" element={<Main/>}/>
                     <Route path="/history" element={<History/>}/>
                     <Route path="/favorites" element={<Favorites/>}/>
-
+                    <Route path="/detailed/:id" element={<Detailed/>}/>
                 </Routes>
-
-
             </div>
             <Footer></Footer>
+
         </div>
+
     )
 }
 

@@ -4,14 +4,13 @@ import movieApi from "../api/api.js";
 
 
 const reducers = combineReducers({
+    favoriteMovie: favoriteMoviesReducer,
+    [movieApi.reducerPath]: movieApi.reducer,
 
 })
 
 export const store = configureStore({
-    reducer: {
-        favoriteMovie: favoriteMoviesReducer,
-        [movieApi.reducerPath]: movieApi.reducer,
-
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(movieApi.middleware)
+    reducer: reducers,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(movieApi.middleware)
 })
