@@ -15,13 +15,8 @@ export const historySlice = createSlice({
             state = state.filter((item) => item !== action.payload);
             setHistoryLS(state)
         },
-        getHistory(state) {
-            const historyItems = getHistoryLS;
-            if (historyItems) {
-                state = historyItems;
-            }
-        }
+
     }
 });
-export const {addHistoryItem, deleteHistoryItem, getHistory} = historySlice.actions;
+export const {addHistoryItem, deleteHistoryItem} = historySlice.actions;
 export default historySlice.reducer;
