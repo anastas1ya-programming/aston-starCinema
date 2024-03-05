@@ -2,7 +2,6 @@ import { useSelector} from "react-redux";
 import HistoryItem from "../HistoryItem/HistoryItem.jsx";
 
 const History = () => {
-
     const {history} = useSelector((state) => state)
 
     if (history.length === 0) {
@@ -12,8 +11,8 @@ const History = () => {
     return (
         <div className="container">
             <ul>
-                {history.map((item, index) =>
-                   <HistoryItem item={item} key ={index}/> )}
+                {history.map((item) =>
+                   <HistoryItem item={item.value} id={item.id} key ={item.id}/> )}
 
             </ul>
 

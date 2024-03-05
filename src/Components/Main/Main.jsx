@@ -17,7 +17,14 @@ const Main = (props) => {
     const {data: movies, isError, isLoading} = useGetMoviesQuery(params);
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="container">
+                <div className="d-flex justify-content-center pt-3">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>)
     }
 
     if (isError) {
@@ -27,13 +34,13 @@ const Main = (props) => {
     return (
         <div className="container">
             <div className="row ">
-                { movies.docs.map(movie =>
-                <CardItem title={movie.name} key={movie.id}
-                          poster={movie.poster.url}
-                          shortDescription={movie.shortDescription}
-                          id={movie.id}
-                          card={movie}
-                />
+                {movies.docs.map(movie =>
+                    <CardItem title={movie.name} key={movie.id}
+                              poster={movie.poster.url}
+                              shortDescription={movie.shortDescription}
+                              id={movie.id}
+                              card={movie}
+                    />
                 )}
             </div>
         </div>

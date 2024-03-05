@@ -1,6 +1,5 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {useGetSearchMoviesQuery} from "../../api/api.js";
-import SearchForm from "../Header/SearchForm/SearchForm.jsx";
 import s from './Search.module.css'
 
 const Search = () =>{

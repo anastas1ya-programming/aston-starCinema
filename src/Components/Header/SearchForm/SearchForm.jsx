@@ -19,6 +19,7 @@ const SearchForm = () => {
     const {data: movies} = useGetSearchMoviesQuery(debounceSearch, {skip: input.trim().length <= 0});
     const navigate = useNavigate();
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addHistoryItem(input));
