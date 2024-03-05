@@ -1,0 +1,24 @@
+
+.search {
+    position: absolute;
+    z-index: 2;
+}
+
+.searchList {
+    background: rgba(205, 214, 219, 0.3);
+    width: 90%;
+}
+
+.searchItem {
+    color: black;
+}
+
+.searchOpen{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #20222a59;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}

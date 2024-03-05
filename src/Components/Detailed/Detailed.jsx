@@ -21,7 +21,7 @@ const Detailed = (props) => {
         <div className="container">
             {isError && <h3>ERROR</h3>}
             {isLoading && <h3>Loading...</h3>}
-            {isSuccess && movies.docs.map(currentMovie =>
+            {isSuccess && movies?.docs.map(currentMovie =>
 
                 <div className={s.movie_card} id="ave">
                     <div className={s.info_section}>
@@ -59,10 +59,12 @@ const Detailed = (props) => {
                     </div>
                     <div className={`${s.blur_back} ${s.ave_back}`}
                          style={{
-                             background: `url(${currentMovie.backdrop.url || "https://cinemaplex.ru/wp-content/uploads/2019/03/mirovoi-kinematograf.jpg"})`,
+                             background: `url(${currentMovie.backdrop.url 
+                             || "https://cinemaplex.ru/wp-content/uploads/2019/03/mirovoi-kinematograf.jpg"})`,
                              backgroundSize: 'cover'
                          }}></div>
                 </div>)}
+
         </div>)
 }
 export default Detailed

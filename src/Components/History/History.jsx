@@ -1,9 +1,14 @@
-import history from "../../assets/history.png"
-import c from './History.module.css'
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 const History = () =>{
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+
+
     return(
-        <div>
-            <img className={c.img} src={history} alt="favorites"/>
+        <div className="container">
+
         </div>
     )
 }
