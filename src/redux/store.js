@@ -1,6 +1,7 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import favoriteMoviesReducer from './favoriteMovieSlice.js'
-import historyReducer from './historySlice.js'
+import favoriteMoviesReducer from './favoriteMovieSlice.js';
+import historyReducer from './historySlice.js';
+import authReducer from './authSlice.js';
 import movieApi from "../api/api.js";
 import {saveFavoritesMiddleware, setHistoryMiddleware} from "../middleware/middleware.js";
 
@@ -8,6 +9,7 @@ import {saveFavoritesMiddleware, setHistoryMiddleware} from "../middleware/middl
 const reducers = combineReducers({
     favoriteMovie: favoriteMoviesReducer,
     history: historyReducer,
+    auth: authReducer,
     [movieApi.reducerPath]: movieApi.reducer,
 
 })

@@ -8,6 +8,8 @@ import Favorites from "./Components/Favorites/Favorites.jsx";
 import Detailed from "./Components/Detailed/Detailed.jsx";
 import Search from "./Components/Search/Search.jsx";
 import {createContext, useEffect, useState} from "react";
+import Login from "./Components/Login/Login.jsx";
+import Registration from "./Components/Registration/Registration.jsx";
 
 export const ThemeContext = createContext(null);
 function App(props) {
@@ -31,6 +33,8 @@ function App(props) {
                         <Route path="/favorites" element={<Favorites/>}/>
                         <Route path="/detailed/:id" element={<Detailed/>}/>
                         <Route path="/search" element={<Search/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/registration" element={<Registration/>}/>
                     </Routes>
                 </div>
                 <Footer></Footer>

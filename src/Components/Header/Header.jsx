@@ -38,12 +38,12 @@ const Header = (props) => {
                                 <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} to="/history">History</NavLink>
 
                             </li>
+                            {/*<li className="nav-item">*/}
+                            {/*    <a className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} href="#"><i className="bi bi-person-circle"*/}
+                            {/*                                        style={{fontSize: '1.5rem'}}></i></a>*/}
+                            {/*</li>*/}
                             <li className="nav-item">
-                                <a className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} href="#"><i className="bi bi-person-circle"
-                                                                    style={{fontSize: '1.5rem'}}></i></a>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} to="/signout">Sign out</NavLink>
+                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} to="/login">Log In</NavLink>
                             </li>
                             <li className="nav-item">
                                 <ThemeToggle />
