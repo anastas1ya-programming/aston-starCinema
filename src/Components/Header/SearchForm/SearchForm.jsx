@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useGetSearchMoviesQuery} from "../../../api/api.js";
 import s from './SearchForm.module.css'
@@ -18,48 +18,98 @@ const SearchForm = () => {
     const debounceSearch = useDebounce(input, 500);
     const {data: movies} = useGetSearchMoviesQuery(debounceSearch, {skip: input.trim().length <= 0});
     const navigate = useNavigate();
+    const suggestionRef = useRef(null);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addHistoryItem(input));
         navigate(`/search?query=${input}`);
+        setIsOpen(false);
     }
     const handleChange = (e) => {
         setInput(() => e.target.value);
     }
 
+    const handleClear = () => {
+        setInput("");
+    }
+
     const handleClick = (name, id) => {
         navigate(`/detailed/${id}`);
-
+        setIsOpen(false);
     }
+
+
+    const handleFormClick = () => {
+        setIsOpen(true);
+    }
+
+    const handleOutsideClick = (e) => {
+        if (suggestionRef.current && !suggestionRef.current.contains(e.target)) {
+            setIsOpen(false);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
+
 
     return (
         <section>
-            <form className="d-flex" role="search" onSubmit={handleSubmit}>
+            <form className="d-flex pb-2" role="search" onSubmit={handleSubmit} onClick={handleFormClick}>
                 <input
                     className="form-control me-2"
                     type="text"
                     placeholder="Search"
                     value={input || ''}
                     onChange={handleChange}
-                    aria-label="Search"/>
+                    aria-label="Search"
+                />
+                {input && (
+                    <button
+                        className={`btn btn-outline-none`}
+                        type="button"
+                        onClick={handleClear}
+                    >
+                        <i className="bi bi-x-circle"></i>
+                    </button>
+                )}
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <div className={s.search}>
-                {movies?.docs?.length ? (
+            {input.length === 0 || isOpen && (
+                <div className={s.search} ref={suggestionRef}>
+                    {movies?.docs?.length ? (
                         <ul className={s.searchList}>
                             {movies.docs.map(movie =>
-                                <li className={s.searchItem} key={movie.id} onClick={() => {
-                                    handleClick(movie.name, movie.id)
-                                }}
-                                >{movie.name}</li>
+                                <li
+                                    className={s.searchItem}
+                                    key={movie.id}
+                                    onClick={() => handleClick(movie.name, movie.id)}
+                                >
+                                    <div className={s.movieInfo}>
+                                        {movie.poster.url && (
+                                            <img
+                                                src={movie.poster.url}
+                                                alt={movie.name}
+                                                className={s.movieImage}
+                                            />
+                                        )}
+                                        <span>{movie.name}</span>
+                                    </div>
+                                </li>
                             )}
                         </ul>
-                    ) :
-                    <p>There are no matches 😓</p>}
-            </div>
+                    ) : (
+                        <p>There are no matches 😓</p>
+                    )}
+                </div>
+            )}
         </section>
-    )
+    );
 }
 export default SearchForm

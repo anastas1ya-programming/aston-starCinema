@@ -1,6 +1,8 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {deleteHistoryItem} from "../../redux/historySlice.js";
+import s from './HistoryItem.module.css'
+
 
 const HistoryItem = (props) => {
     const dispatch = useDispatch();
@@ -8,15 +10,14 @@ const HistoryItem = (props) => {
 
     const handleDelete = (id) => {
         dispatch(deleteHistoryItem(id));
-        console.log('was deleted ' + id)
     };
 
     return (
-        <li>
+        <li className={s.historyItem}>
             <p onClick={() => navigate(`/search/?query=${props.item}`)}>
                 {props.item}
             </p>
-            <button onClick={() => handleDelete(props.id)}>X</button>
+            <button className={s.deleteButton} onClick={() => handleDelete(props.id)}>X</button>
         </li>
     )
 }

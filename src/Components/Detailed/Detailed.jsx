@@ -1,7 +1,7 @@
 import {useGetDetailedInfoQuery,} from "../../api/api.js";
 import s from "./Detailed.module.css"
 import {useNavigate, useParams} from "react-router-dom";
-import { useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useActions} from "../../Hooks/useActions.js";
 
 const Detailed = (props) => {
@@ -15,7 +15,7 @@ const Detailed = (props) => {
 
     const {data: movies, isError, isLoading, isSuccess} = useGetDetailedInfoQuery(paramFromUrl.id);
 
-    const isMovieLiked = favoriteMovie.some(movie => movie.id === movies.docs[0].id)
+    const isMovieLiked = favoriteMovie.some(movie => movie.id === movies?.docs[0].id)
 
     return (
         <div className="container">
@@ -59,7 +59,7 @@ const Detailed = (props) => {
                     </div>
                     <div className={`${s.blur_back} ${s.ave_back}`}
                          style={{
-                             background: `url(${currentMovie.backdrop.url 
+                             background: `url(${currentMovie.backdrop.url
                              || "https://cinemaplex.ru/wp-content/uploads/2019/03/mirovoi-kinematograf.jpg"})`,
                              backgroundSize: 'cover'
                          }}></div>
