@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getHistoryLS, setHistoryLS} from "../utils/localStorageUtils.js";
-import { v4 as uuidv4 } from "uuid";
+import {getHistoryLS} from "../utils/localStorageUtils.js";
+import {v4 as uuidv4} from "uuid";
 
 let initialState = getHistoryLS();
 
@@ -9,17 +9,17 @@ export const historySlice = createSlice({
     initialState,
     reducers: {
         addHistoryItem(state, action) {
-            const newItem ={
+            const newItem = {
                 id: uuidv4(),
                 value: action.payload
             }
             const isExists = state.some(item => item.id === action.payload.id)
             if (!isExists) state.push(newItem);
-            setHistoryLS(state);
+
         },
         deleteHistoryItem(state, action) {
             state = state.filter((item) => item.id !== action.payload);
-            setHistoryLS(state);
+
             return state;
 
         },

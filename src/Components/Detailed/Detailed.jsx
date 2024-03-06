@@ -16,7 +16,8 @@ const Detailed = (props) => {
 
     const {data: movies, isError, isLoading, isSuccess} = useGetDetailedInfoQuery(paramFromUrl.id);
 
-    const isMovieLiked = favoriteMovie.some(movie => movie.id === movies?.docs[0].id)
+    const isMovieLiked = movies && movies.docs && movies.docs.length > 0 &&
+        favoriteMovie.some(movie => movie.id === movies.docs[0].id);
 
     return (
         <div className="container">
