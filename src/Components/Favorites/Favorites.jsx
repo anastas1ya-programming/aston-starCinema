@@ -17,7 +17,6 @@ const Favorites = () => {
                               shortDescription={movie.shortDescription}
                               id={movie.id}
                               card={movie}
-
                     />
                 )}
             </div>

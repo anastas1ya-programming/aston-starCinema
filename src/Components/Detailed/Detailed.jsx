@@ -1,13 +1,14 @@
 import {useGetDetailedInfoQuery,} from "../../api/api.js";
 import s from "./Detailed.module.css"
 import {useNavigate, useParams} from "react-router-dom";
-import { useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useActions} from "../../Hooks/useActions.js";
+import {getFavorite} from "../../redux/favoriteMovieSlice.js";
 
 const Detailed = (props) => {
     const {toggleFavorites} = useActions();
 
-    const {favoriteMovie} = useSelector(state => state)
+    const favoriteMovie = useSelector(getFavorite)
 
     const navigate = useNavigate();
 
@@ -15,13 +16,14 @@ const Detailed = (props) => {
 
     const {data: movies, isError, isLoading, isSuccess} = useGetDetailedInfoQuery(paramFromUrl.id);
 
-    const isMovieLiked = favoriteMovie.some(movie => movie.id === movies.docs[0].id)
+    const isMovieLiked = movies && movies.docs && movies.docs.length > 0 &&
+        favoriteMovie.some(movie => movie.id === movies.docs[0].id);
 
     return (
         <div className="container">
             {isError && <h3>ERROR</h3>}
             {isLoading && <h3>Loading...</h3>}
-            {isSuccess && movies.docs.map(currentMovie =>
+            {isSuccess && movies?.docs.map(currentMovie =>
 
                 <div className={s.movie_card} id="ave">
                     <div className={s.info_section}>
@@ -59,10 +61,12 @@ const Detailed = (props) => {
                     </div>
                     <div className={`${s.blur_back} ${s.ave_back}`}
                          style={{
-                             background: `url(${currentMovie.backdrop.url || "https://cinemaplex.ru/wp-content/uploads/2019/03/mirovoi-kinematograf.jpg"})`,
+                             background: `url(${currentMovie.backdrop.url
+                             || "https://cinemaplex.ru/wp-content/uploads/2019/03/mirovoi-kinematograf.jpg"})`,
                              backgroundSize: 'cover'
                          }}></div>
                 </div>)}
+
         </div>)
 }
 export default Detailed

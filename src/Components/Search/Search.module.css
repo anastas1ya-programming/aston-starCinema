@@ -1,0 +1,33 @@
+.searchList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto 0;
+    width: 80%;
+}
+
+.searchItem {
+    list-style: none;
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #575756;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+}
+
+.searchItem:hover {
+    background-color: #eee;
+    transform: scale(1.05);
+}
+
+.movieWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.movieImage {
+    width: 100px;
+    margin-right: 10px;
+}

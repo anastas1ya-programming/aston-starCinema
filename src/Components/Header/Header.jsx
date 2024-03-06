@@ -1,6 +1,7 @@
 import Logo from "./Logo/Logo.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NavLink} from "react-router-dom";
+import SearchForm from "./SearchForm/SearchForm.jsx";
 
 
 const Header = (props) => {
@@ -16,14 +17,9 @@ const Header = (props) => {
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-
-
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search"
-                                   aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                           <SearchForm />
+
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <NavLink className="nav-link" aria-current="page" to="/favorites"><i
