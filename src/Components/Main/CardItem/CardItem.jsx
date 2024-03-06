@@ -1,12 +1,13 @@
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useActions} from "../../../Hooks/useActions.js";
+import {getFavorite} from "../../../redux/favoriteMovieSlice.js";
 
 const CardItem = (props) => {
 
     const {toggleFavorites} = useActions();
 
-    const {favoriteMovie} = useSelector(state => state)
+    const favoriteMovie = useSelector(getFavorite)
 
     const isMovieLiked = favoriteMovie.some(movie => movie.id === props.id)
 

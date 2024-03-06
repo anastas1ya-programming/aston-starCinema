@@ -1,9 +1,10 @@
 import { useSelector} from "react-redux";
 import HistoryItem from "../HistoryItem/HistoryItem.jsx";
 import s from './History.module.css'
+import {getHistory} from "../../redux/historySlice.js";
 
 const History = () => {
-    const {history} = useSelector((state) => state)
+    const history = useSelector(getHistory)
 
     if (history.length === 0) {
         return <div className="container"><h3>You have not searched anything yet!</h3></div>;

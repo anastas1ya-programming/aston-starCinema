@@ -3,11 +3,12 @@ import s from "./Detailed.module.css"
 import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useActions} from "../../Hooks/useActions.js";
+import {getFavorite} from "../../redux/favoriteMovieSlice.js";
 
 const Detailed = (props) => {
     const {toggleFavorites} = useActions();
 
-    const {favoriteMovie} = useSelector(state => state)
+    const favoriteMovie = useSelector(getFavorite)
 
     const navigate = useNavigate();
 

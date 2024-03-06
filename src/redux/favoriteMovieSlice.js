@@ -23,5 +23,6 @@ export const favoriteMovieSlice = createSlice({
         }
     }
 });
+export const getFavorite = (state) => state.favoriteMovie
 export const {toggleFavorites} = favoriteMovieSlice.actions;
 export default favoriteMovieSlice.reducer;

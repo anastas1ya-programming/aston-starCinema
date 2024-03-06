@@ -9,9 +9,7 @@ import {useDebounce} from "../../../Hooks/useDebounce.js";
 const SearchForm = () => {
 
     const location = useLocation();
-
     const queryParam = new URLSearchParams(location.search).get('query');
-
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState(queryParam || "");

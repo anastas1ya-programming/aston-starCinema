@@ -26,5 +26,6 @@ export const historySlice = createSlice({
 
     }
 });
+export const getHistory = (state) => state.history
 export const {addHistoryItem, deleteHistoryItem} = historySlice.actions;
 export default historySlice.reducer;
