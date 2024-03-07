@@ -8,7 +8,7 @@ import {ThemeToggle} from "./ThemeToggle.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, logOutUser} from "../../redux/authSlice.js";
 import {isAuth} from "../../utils/localStorageUtils.js";
-import {clearState, getFavorite} from "../../redux/favoriteMovieSlice.js";
+import {getFavorite} from "../../redux/favoriteMovieSlice.js";
 
 
 const Header = (props) => {
@@ -17,13 +17,10 @@ const Header = (props) => {
     const fav = useSelector(getFavorite);
     const navigate = useNavigate();
 
-
     const dispatch = useDispatch();
 
     const handleLogOut = () =>{
         dispatch(logOutUser())
-        debugger
-        dispatch(clearState())
         navigate('/')
     }
 

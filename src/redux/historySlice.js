@@ -26,10 +26,15 @@ export const historySlice = createSlice({
             const email = localStorage.getItem('current_user')
             if(email) {state = getUserHistoryLS(email)}
             return state;
+        },
+
+        clearHistory(state){
+            state = initialState;
+            return state;
         }
 
     }
 });
 export const getHistory = (state) => state.history
-export const {addHistoryItem, deleteHistoryItem, getUserHistory} = historySlice.actions;
+export const {addHistoryItem, deleteHistoryItem, getUserHistory, clearHistory} = historySlice.actions;
 export default historySlice.reducer;
