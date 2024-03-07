@@ -4,6 +4,7 @@ import {useActions} from "../../../Hooks/useActions.js";
 import {getFavorite} from "../../../redux/favoriteMovieSlice.js";
 import {useContext} from "react";
 import {ThemeContext} from "../../../App.jsx";
+import {isAuth} from "../../../utils/localStorageUtils.js";
 
 const CardItem = (props) => {
 
@@ -17,6 +18,14 @@ const CardItem = (props) => {
 
     const { theme } = useContext(ThemeContext);
 
+    const handleAddToFavorites =()=>{
+        if(isAuth()){
+            toggleFavorites(props.card)
+        } else{
+            navigate('/login')
+        }
+    }
+
     return (
         <div className="col mb-4">
             <div className={`card m-auto mb-2 h-100 ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`} style={{ width: "18rem" }}>
@@ -27,7 +36,7 @@ const CardItem = (props) => {
                 </div>
 
                 <div className={`card-footer d-flex justify-content-between align-items-center ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`}>
-                    <button onClick={() => toggleFavorites(props.card)} className="btn btn-danger">
+                    <button onClick={handleAddToFavorites} className="btn btn-danger">
                         {isMovieLiked ? "Unlike" : "Like"}
                     </button>
                     <button onClick={() => navigate(`/detailed/${props.id}`)} className="btn btn-info">

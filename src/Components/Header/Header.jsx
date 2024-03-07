@@ -45,23 +45,20 @@ const Header = (props) => {
                         <SearchForm/>
 
                         <ul className={`navbar-nav ms-auto mb-2 mb-lg-0 ${theme === "dark" ? "text-light" : "text-dark"}`}>
-                            <li className="nav-item">
+                            {isAuth() ? (<li className="nav-item">
                                 <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} aria-current="page" to="/favorites"><i
                                     className="bi bi-heart" style={{fontSize: '1.5rem'}}></i></NavLink>
-                            </li>
-                            <li className="nav-item">
+                            </li>) : null}
+                            {isAuth() ? (<li className="nav-item">
                                 <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} to="/history">History</NavLink>
 
-                            </li>
+                            </li>): null}
                             {isAuth() ? (
                                     <li className="nav-item">
                                         <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
                                                  ><p>{user.username}</p></NavLink>
                                     </li>) :
-                                (<li className="nav-item">
-                                    <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
-                                    ><p>Not authorized</p></NavLink>
-                                </li>)
+                                null
                             }
 
                             {!isAuth() ? (

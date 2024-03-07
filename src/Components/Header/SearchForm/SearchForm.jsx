@@ -5,6 +5,7 @@ import s from './SearchForm.module.css'
 import {useDispatch} from "react-redux";
 import {addHistoryItem} from "../../../redux/historySlice.js";
 import {useDebounce} from "../../../Hooks/useDebounce.js";
+import {isAuth} from "../../../utils/localStorageUtils.js";
 
 const SearchForm = () => {
 
@@ -21,7 +22,7 @@ const SearchForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addHistoryItem(input));
+        if(isAuth()){dispatch(addHistoryItem(input));}
         navigate(`/search?query=${input}`);
         setIsOpen(false);
     }

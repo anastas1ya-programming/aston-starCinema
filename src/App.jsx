@@ -10,8 +10,10 @@ import Search from "./Components/Search/Search.jsx";
 import {createContext, useEffect, useState} from "react";
 import Login from "./Components/Login/Login.jsx";
 import Registration from "./Components/Registration/Registration.jsx";
+import {PrivateRoute} from "./PrivateRoute.jsx";
 
 export const ThemeContext = createContext(null);
+
 function App(props) {
     const storedTheme = localStorage.getItem("theme");
     const [theme, setTheme] = useState(storedTheme || "light");
@@ -29,8 +31,22 @@ function App(props) {
                 <div>
                     <Routes>
                         <Route path="/" element={<Main/>}/>
-                        <Route path="/history" element={<History/>}/>
-                        <Route path="/favorites" element={<Favorites/>}/>
+                        <Route path='/history' element={<PrivateRoute />}>
+                            <Route
+                                path='/history'
+                                element={
+                                        <History />
+                                }
+                            />
+                        </Route>
+                        <Route path='/favorites' element={<PrivateRoute />}>
+                            <Route
+                                path='/favorites'
+                                element={
+                                    <Favorites />
+                                }
+                            />
+                        </Route>
                         <Route path="/detailed/:id" element={<Detailed/>}/>
                         <Route path="/search" element={<Search/>}/>
                         <Route path="/login" element={<Login/>}/>

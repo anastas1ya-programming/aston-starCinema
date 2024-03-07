@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useActions} from "../../Hooks/useActions.js";
 import {getFavorite} from "../../redux/favoriteMovieSlice.js";
+import {isAuth} from "../../utils/localStorageUtils.js";
 
 const Detailed = (props) => {
     const {toggleFavorites} = useActions();
@@ -18,6 +19,14 @@ const Detailed = (props) => {
 
     const isMovieLiked = movies && movies.docs && movies.docs.length > 0 &&
         favoriteMovie.some(movie => movie.id === movies.docs[0].id);
+
+    const handleAddToFavorites = (m) => {
+        if (isAuth()) {
+            toggleFavorites(m)
+        } else {
+            navigate('/login')
+        }
+    }
 
     return (
         <div className="container">
@@ -48,7 +57,7 @@ const Detailed = (props) => {
                             <ul>
                                 <li>
                                     <button onClick={() => {
-                                        toggleFavorites(currentMovie)
+                                        handleAddToFavorites(currentMovie)
 
                                     }} className="btn btn-danger ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
                                 </li>
