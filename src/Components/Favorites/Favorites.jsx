@@ -1,9 +1,10 @@
 import {useSelector} from "react-redux";
 import CardItem from "../Main/CardItem/CardItem.jsx";
+import {getFavorite} from "../../redux/favoriteMovieSlice.js";
 
 const Favorites = () => {
 
-    const {favoriteMovie} = useSelector(state => state)
+    const favoriteMovie = useSelector(getFavorite)
 
     if (favoriteMovie.length === 0) {
         return <div className="container"><h3>You have not added anything yet!</h3></div>;

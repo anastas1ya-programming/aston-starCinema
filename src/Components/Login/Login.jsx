@@ -1,6 +1,32 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {logInUser} from "../../redux/authSlice.js";
+import {useRef} from "react";
+import {isAuth} from "../../utils/localStorageUtils.js";
+import {initState} from "../../redux/favoriteMovieSlice.js";
+
 
 const Login = () => {
+
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const email = emailRef?.current?.value;
+        const password = passwordRef?.current?.value;
+        dispatch(logInUser({email, password}));
+        if (isAuth()) {
+            navigate('/')
+            const user = JSON.parse(localStorage.getItem(email))
+            dispatch(initState(user.favorites))
+        }
+
+    }
+
     return (
         <section className="mt-5">
             <div className="container">
@@ -10,7 +36,7 @@ const Login = () => {
                             <div className="card-body p-3 p-md-4 p-xl-5">
                                 <h2 className="fs-6 fw-normal text-center text-secondary mb-4">Sign in to your
                                     account</h2>
-                                <form action="#!">
+                                <form onSubmit={handleSubmit}>
                                     <div className="row gy-2 overflow-hidden">
                                         <div className="col-12">
                                             <div className="form-floating mb-3">
@@ -21,6 +47,8 @@ const Login = () => {
                                                     id="email"
                                                     placeholder="name@example.com"
                                                     required
+                                                    ref={emailRef}
+
                                                 />
                                                 <label htmlFor="email" className="form-label">
                                                     Email
@@ -36,6 +64,7 @@ const Login = () => {
                                                     id="password"
                                                     placeholder="Password"
                                                     required
+                                                    ref={passwordRef}
                                                 />
                                                 <label htmlFor="password" className="form-label">
                                                     Password

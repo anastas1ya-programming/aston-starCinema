@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {createUser, getUser} from "../../redux/authSlice.js";
 import {useRef} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Registration = () => {
 
@@ -10,6 +11,8 @@ const Registration = () => {
     const nameRef = useRef(null);
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -23,6 +26,8 @@ const Registration = () => {
         nameRef.current.value = "";
         emailRef.current.value = "";
         passwordRef.current.value = "";
+
+        navigate('/login')
 
     };
 
