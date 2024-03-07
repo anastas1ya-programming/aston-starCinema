@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {createUserLS, isUserDataCorrect} from "../utils/localStorageUtils.js";
-import {useSelector} from "react-redux";
-import {getFavorite} from "./favoriteMovieSlice.js";
+
 
 const currentUserEmail = JSON.parse(localStorage.getItem('current_user'));
 const currentUser = JSON.parse(localStorage.getItem(currentUserEmail))

@@ -4,6 +4,7 @@ import {logInUser} from "../../redux/authSlice.js";
 import {useRef} from "react";
 import {isAuth} from "../../utils/localStorageUtils.js";
 import {initState} from "../../redux/favoriteMovieSlice.js";
+import {getUserHistory} from "../../redux/historySlice.js";
 
 
 const Login = () => {
@@ -23,6 +24,7 @@ const Login = () => {
             navigate('/')
             const user = JSON.parse(localStorage.getItem(email))
             dispatch(initState(user.favorites))
+            dispatch(getUserHistory())
         }
 
     }

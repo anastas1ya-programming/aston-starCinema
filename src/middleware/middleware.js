@@ -1,5 +1,5 @@
 import {toggleFavorites} from "../redux/favoriteMovieSlice.js";
-import {addUserFavorites, setFavoritesLS, setHistoryLS, setUserHistory} from "../utils/localStorageUtils.js";
+import {addUserFavorites, setUserHistory} from "../utils/localStorageUtils.js";
 import {addHistoryItem, deleteHistoryItem} from "../redux/historySlice.js";
 
 export const saveFavoritesMiddleware = (store) => (next) => (action) => {
