@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {getUserHistoryLS} from "../../utils/localStorageUtils.js";
 import {v4 as uuidv4} from "uuid";
 
-let initialState = [];
+let initialState = getUserHistoryLS() || [];
 
 export const historySlice = createSlice({
     name: 'history',
@@ -23,13 +23,12 @@ export const historySlice = createSlice({
 
         },
         getUserHistory (state) {
-            const email = localStorage.getItem('current_user')
-            if(email) {state = getUserHistoryLS(email)}
+            state = getUserHistoryLS();
             return state;
         },
 
         clearHistory(state){
-            state = initialState;
+            state = [];
             return state;
         }
 

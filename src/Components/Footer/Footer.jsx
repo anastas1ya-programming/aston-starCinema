@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";
 
-const Footer = (props) => {
+const Footer = () => {
     const {theme} = useContext(ThemeContext)
     return (
         <footer className={`container text-center ${theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"}`}>

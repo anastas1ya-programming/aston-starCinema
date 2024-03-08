@@ -4,8 +4,9 @@ import historyReducer from './slices/historySlice.js';
 import authReducer from './slices/authSlice.js';
 import movieApi from "../api/api.js";
 import {
-    initInfoMiddleware,
-    resetStateMiddleware,
+    createUserMiddleware,
+    logInMiddleware,
+    logOutMiddleware,
     saveFavoritesMiddleware,
     setHistoryMiddleware
 } from "./middleware/middleware.js";
@@ -22,5 +23,5 @@ const reducers = combineReducers({
 export const store = configureStore({
     reducer: reducers,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(movieApi.middleware, saveFavoritesMiddleware, setHistoryMiddleware, initInfoMiddleware, resetStateMiddleware)
+        getDefaultMiddleware().concat(movieApi.middleware, saveFavoritesMiddleware, setHistoryMiddleware, logInMiddleware, logOutMiddleware, createUserMiddleware)
 })

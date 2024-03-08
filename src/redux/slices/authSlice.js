@@ -1,11 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createUserLS, isUserDataCorrect} from "../../utils/localStorageUtils.js";
+import {createUserLS, getCurrent, isUserDataCorrect, removeCurrent, setCurrent} from "../../utils/localStorageUtils.js";
 
 
-const currentUserEmail = JSON.parse(localStorage.getItem('current_user'));
-const currentUser = JSON.parse(localStorage.getItem(currentUserEmail))
-
-let initialState = currentUser ||
+let initialState = getCurrent() ||
     {
         username: '',
         email: '',
@@ -18,7 +15,7 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         createUser(state, action) {
-            createUserLS(action.payload.username, action.payload.email, action.payload.password)
+
         },
         logInUser(state, action) {
 
@@ -29,16 +26,11 @@ export const authSlice = createSlice({
                 state.password = user.password;
 
             }
-            localStorage.setItem('current_user', JSON.stringify(user.email))
-
-
         },
         logOutUser: (state) => {
             state.username = '';
             state.email = '';
             state.password = '';
-
-            localStorage.removeItem('current_user')
 
         }
     }

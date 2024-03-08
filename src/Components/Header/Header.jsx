@@ -8,15 +8,12 @@ import {ThemeToggle} from "./ThemeToggle.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser, logOutUser} from "../../redux/slices/authSlice.js";
 import {isAuth} from "../../utils/localStorageUtils.js";
-import {getFavorite} from "../../redux/slices/favoriteMovieSlice.js";
 
 
-const Header = (props) => {
+const Header = () => {
     const {theme} = useContext(ThemeContext)
     const user = useSelector(getUser);
-    const fav = useSelector(getFavorite);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const handleLogOut = () =>{
@@ -68,7 +65,7 @@ const Header = (props) => {
                                 </li>) :
                                 (<li className="nav-item">
                                 <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} onClick={()=>handleLogOut()}
-                                         >Log Out</NavLink>
+                                         to="/" >Log Out</NavLink>
                             </li>)
                             }
                             <li className="nav-item">

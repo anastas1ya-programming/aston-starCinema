@@ -1,7 +1,7 @@
 import CardItem from "../../Components/CardItem/CardItem.jsx";
 import {useGetMoviesQuery} from "../../api/api.js";
 
-const Main = (props) => {
+const Main = () => {
 
     const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'shortDescription', 'description'];
 

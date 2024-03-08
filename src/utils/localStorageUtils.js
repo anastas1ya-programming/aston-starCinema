@@ -1,7 +1,3 @@
-import {useDispatch} from "react-redux";
-import {getUserHistory} from "../redux/slices/historySlice.js";
-import {getFavoriteItem} from "../redux/slices/favoriteMovieSlice.js";
-
 export const createUserLS = (username, email, password) => {
     if (email) {
         localStorage.setItem(email,
@@ -22,10 +18,34 @@ export const isUserDataCorrect = (email, password) => {
     }
 }
 
-export const isAuth = () =>{
-    if (localStorage.getItem('current_user')){
+export const isAuth = () => {
+    if (localStorage.getItem('current_user')) {
         return true;
-    } else{return false}
+    } else {
+        return false
+    }
+}
+
+export const isUserExists = (email) => {
+    if (localStorage.getItem(email)) {
+        return true;
+    } else {
+        return false
+    }
+}
+
+export const setCurrent = (user) => {
+    localStorage.setItem('current_user', JSON.stringify(user.email))
+}
+
+export const getCurrent = () => {
+    const currentUserEmail = JSON.parse(localStorage.getItem('current_user'));
+    const currentUser = JSON.parse(localStorage.getItem(currentUserEmail));
+    return currentUser;
+}
+
+export const removeCurrent = () =>{
+    localStorage.removeItem('current_user')
 }
 
 export const addUserFavorites = (email, favorites) => {
@@ -35,12 +55,13 @@ export const addUserFavorites = (email, favorites) => {
 
 
 }
-export const getUserFavorites = (email) => {
-    const user = JSON.parse(localStorage.getItem(email.slice(1, -1)));
-    if (user) {
-        return user.favorites
-
+export const getUserFavorites = () => {
+    const email = localStorage.getItem('current_user')
+    if (email) {
+        const user = JSON.parse(localStorage.getItem(email.slice(1, -1)));
+        return user ? user.favorites : [];
     }
+    return [];
 }
 
 export const setUserHistory = (email, history) => {
@@ -50,16 +71,13 @@ export const setUserHistory = (email, history) => {
 
 }
 
-export const getUserHistoryLS = (email) => {
-    const user = JSON.parse(localStorage.getItem(email.slice(1, -1)));
-    if (user) {
-        return user.history
+export const getUserHistoryLS = () => {
+    const email = localStorage.getItem('current_user')
+    if (email){
+        const user = JSON.parse(localStorage.getItem(email.slice(1, -1)));
+        return user ? user.history : [];
     }
+    return [];
+
 }
-// const dispatch = useDispatch();
-// export const aaa = () => {
-//
-//     dispatch(getUserHistory);
-//     dispatch(getFavoriteItem);
-//
-// }
+

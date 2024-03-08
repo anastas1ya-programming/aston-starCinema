@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { getUserFavorites} from "../../utils/localStorageUtils.js";
+import {getUserFavorites} from "../../utils/localStorageUtils.js";
 
 
-let initialState = []
+let initialState = getUserFavorites() || []
 
 export const favoriteMovieSlice = createSlice({
     name: 'favoriteMovie',
@@ -14,23 +14,18 @@ export const favoriteMovieSlice = createSlice({
                 const index = state.findIndex(m => m.id === action.payload.id)
                 if (index !== -1) {
                     state.splice(index, 1)
-
                 }
             } else {
                 state.push(action.payload)
-
             }
         },
         getFavoriteItem(state) {
-            const email = localStorage.getItem('current_user')
-            if(email){
-                state = getUserFavorites(email)
-            }
+            state = getUserFavorites();
             return state;
         },
 
-        clearMovies(state){
-            state = initialState;
+        clearMovies(state) {
+            state = [];
             return state;
         }
 
