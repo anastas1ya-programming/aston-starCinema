@@ -1,4 +1,4 @@
-import CardItem from "./CardItem/CardItem.jsx";
+import CardItem from "../../Components/CardItem/CardItem.jsx";
 import {useGetMoviesQuery} from "../../api/api.js";
 
 const Main = (props) => {

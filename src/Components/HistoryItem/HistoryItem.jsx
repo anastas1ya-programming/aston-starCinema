@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {deleteHistoryItem} from "../../redux/historySlice.js";
+import {deleteHistoryItem} from "../../redux/slices/historySlice.js";
 import s from './HistoryItem.module.css'
 import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";

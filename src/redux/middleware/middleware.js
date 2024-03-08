@@ -1,7 +1,7 @@
-import {clearMovies, getFavoriteItem, toggleFavorites} from "../redux/favoriteMovieSlice.js";
-import { addUserFavorites, setUserHistory} from "../utils/localStorageUtils.js";
-import {addHistoryItem, clearHistory, deleteHistoryItem, getUserHistory} from "../redux/historySlice.js";
-import {logInUser, logOutUser} from "../redux/authSlice.js";
+import {clearMovies, getFavoriteItem, toggleFavorites} from "../slices/favoriteMovieSlice.js";
+import { addUserFavorites, setUserHistory} from "../../utils/localStorageUtils.js";
+import {addHistoryItem, clearHistory, deleteHistoryItem, getUserHistory} from "../slices/historySlice.js";
+import {logInUser, logOutUser} from "../slices/authSlice.js";
 
 export const saveFavoritesMiddleware = (store) => (next) => (action) => {
     if (action.type === toggleFavorites.type) {

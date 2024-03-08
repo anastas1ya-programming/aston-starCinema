@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
-import {getUserHistory} from "../redux/historySlice.js";
-import {getFavoriteItem} from "../redux/favoriteMovieSlice.js";
+import {getUserHistory} from "../redux/slices/historySlice.js";
+import {getFavoriteItem} from "../redux/slices/favoriteMovieSlice.js";
 
 export const createUserLS = (username, email, password) => {
     if (email) {

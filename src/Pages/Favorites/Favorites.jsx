@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
-import CardItem from "../Main/CardItem/CardItem.jsx";
-import {getFavorite} from "../../redux/favoriteMovieSlice.js";
+import CardItem from "../../Components/CardItem/CardItem.jsx";
+import {getFavorite} from "../../redux/slices/favoriteMovieSlice.js";
 
 const Favorites = () => {
 

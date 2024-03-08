@@ -1,17 +1,6 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useGetSearchMoviesQuery} from "../../api/api.js";
 import s from './Search.module.css'
 
-const Search = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const queryParam = new URLSearchParams(location.search).get('query');
-    const {data: movies, isSuccess, isLoading, isError} = useGetSearchMoviesQuery(queryParam);
-
-    const handleClick = (id) => {
-        navigate(`/detailed/${id}`);
-    };
-
+const Search = ({movies, isSuccess, isLoading, isError, handleClick}) => {
     return (
         <div className="container">
 

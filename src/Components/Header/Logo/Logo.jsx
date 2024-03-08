@@ -1,6 +1,5 @@
 import logo from "../../../assets/logo.png"
 import c from './Logo.module.css'
-// import {Col, Row} from "react-bootstrap";
 
 const Logo = () => {
     return (

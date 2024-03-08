@@ -1,11 +1,11 @@
 import {useEffect, useRef, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useGetSearchMoviesQuery} from "../../../api/api.js";
+import {useGetSearchMoviesQuery} from "../../api/api.js";
 import s from './SearchForm.module.css'
 import {useDispatch} from "react-redux";
-import {addHistoryItem} from "../../../redux/historySlice.js";
-import {useDebounce} from "../../../Hooks/useDebounce.js";
-import {isAuth} from "../../../utils/localStorageUtils.js";
+import {addHistoryItem} from "../../redux/slices/historySlice.js";
+import {useDebounce} from "../../Hooks/useDebounce.js";
+import {isAuth} from "../../utils/localStorageUtils.js";
 
 const SearchForm = () => {
 

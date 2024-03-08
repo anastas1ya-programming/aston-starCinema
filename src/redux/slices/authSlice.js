@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createUserLS, isUserDataCorrect} from "../utils/localStorageUtils.js";
+import {createUserLS, isUserDataCorrect} from "../../utils/localStorageUtils.js";
 
 
 const currentUserEmail = JSON.parse(localStorage.getItem('current_user'));

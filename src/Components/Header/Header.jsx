@@ -1,14 +1,14 @@
 import Logo from "./Logo/Logo.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NavLink, useNavigate} from "react-router-dom";
-import SearchForm from "./SearchForm/SearchForm.jsx";
+import SearchForm from "../SearchForm/SearchForm.jsx";
 import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";
 import {ThemeToggle} from "./ThemeToggle.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {getUser, logOutUser} from "../../redux/authSlice.js";
+import {getUser, logOutUser} from "../../redux/slices/authSlice.js";
 import {isAuth} from "../../utils/localStorageUtils.js";
-import {getFavorite} from "../../redux/favoriteMovieSlice.js";
+import {getFavorite} from "../../redux/slices/favoriteMovieSlice.js";
 
 
 const Header = (props) => {

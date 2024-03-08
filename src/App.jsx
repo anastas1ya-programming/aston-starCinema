@@ -9,13 +9,13 @@ import {ErrorBoundary} from 'react-error-boundary';
 import {Fallback} from "./Components/ErrorFallback.jsx";
 
 
-const Main = lazy(() => import("./Components/Main/Main.jsx"));
-const History = lazy(() => import("./Components/History/History.jsx"));
-const Favorites = lazy(() => import("./Components/Favorites/Favorites.jsx"));
-const Detailed = lazy(() => import("./Components/Detailed/Detailed.jsx"));
-const Search = lazy(() => import("./Components/Search/Search.jsx"));
-const Login = lazy(() => import("./Components/Login/Login.jsx"));
-const Registration = lazy(() => import("./Components/Registration/Registration.jsx"));
+const Main = lazy(() => import("./Pages/Main/Main.jsx"));
+const History = lazy(() => import("./Pages/History/History.jsx"));
+const Favorites = lazy(() => import("./Pages/Favorites/Favorites.jsx"));
+const DetailedContainer = lazy(() => import("./Pages/Detailed/DetailedContainer.jsx"));
+const SearchContainer = lazy(() => import("./Pages/Search/SearchContainer.jsx"));
+const LoginContainer = lazy(() => import("./Pages/Login/LoginContainer.jsx"));
+const RegistrationContainer = lazy(() => import("./Pages/Registration/RegistrationContainer.jsx"));
 
 
 export const ThemeContext = createContext(null);
@@ -64,15 +64,15 @@ function App(props) {
                             </Route>
                             <Route path="/detailed/:id" element={
                                 <ErrorBoundary FallbackComponent={Fallback}>
-                                    <Detailed/>
+                                    <DetailedContainer/>
                                 </ErrorBoundary>
                             }/>
                             <Route path="/search" element={
                                 <ErrorBoundary FallbackComponent={Fallback}>
-                                    <Search/>
+                                    <SearchContainer/>
                                 </ErrorBoundary>}/>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="/registration" element={<Registration/>}/>
+                            <Route path="/login" element={<LoginContainer/>}/>
+                            <Route path="/registration" element={<RegistrationContainer/>}/>
                         </Routes>
                     </Suspense>
                 </div>

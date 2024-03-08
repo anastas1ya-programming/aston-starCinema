@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { getUserFavorites} from "../utils/localStorageUtils.js";
+import { getUserFavorites} from "../../utils/localStorageUtils.js";
 
 
 let initialState = []

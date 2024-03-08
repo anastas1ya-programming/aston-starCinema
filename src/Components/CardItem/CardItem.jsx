@@ -1,10 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {useActions} from "../../../Hooks/useActions.js";
-import {getFavorite} from "../../../redux/favoriteMovieSlice.js";
+import {useActions} from "../../Hooks/useActions.js";
+import {getFavorite} from "../../redux/slices/favoriteMovieSlice.js";
 import {useContext} from "react";
-import {ThemeContext} from "../../../App.jsx";
-import {isAuth} from "../../../utils/localStorageUtils.js";
+import {ThemeContext} from "../../App.jsx";
+import {isAuth} from "../../utils/localStorageUtils.js";
 
 const CardItem = (props) => {
 
