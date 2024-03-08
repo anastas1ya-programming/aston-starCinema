@@ -1,4 +1,5 @@
 import s from './Search.module.css'
+import moviePic from "../../assets/movie.png";
 
 const Search = ({movies, isSuccess, isLoading, isError, handleClick}) => {
     return (
@@ -13,11 +14,12 @@ const Search = ({movies, isSuccess, isLoading, isError, handleClick}) => {
                             onClick={() => handleClick(movie.id)}
                         >
                             <div className={s.movieWrapper}>
+                                {movie.poster && movie.poster.url ? (
                                 <img
                                     className={s.movieImage}
                                     src={movie.poster.url}
                                     alt={movie.name}
-                                />
+                                />) : (<img src={moviePic} className={s.movieImage}/>)}
                                 <p>{movie.name}</p>
                             </div>
 

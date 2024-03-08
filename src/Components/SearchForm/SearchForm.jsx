@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {addHistoryItem} from "../../redux/slices/historySlice.js";
 import {useDebounce} from "../../Hooks/useDebounce.js";
 import {isAuth} from "../../utils/localStorageUtils.js";
+import moviePic from '../../assets/movie.png'
 
 const SearchForm = () => {
 
@@ -100,13 +101,13 @@ const SearchForm = () => {
                                     onClick={() => handleClick(movie.name, movie.id)}
                                 >
                                     <div className={s.movieInfo}>
-                                        {movie.poster.url && (
+                                        {movie.poster && movie.poster.url ? (
                                             <img
                                                 src={movie.poster.url}
                                                 alt={movie.name}
                                                 className={s.movieImage}
                                             />
-                                        )}
+                                        ) : (<img src={moviePic} className={s.movieImage}/>)}
                                         <span>{movie.name}</span>
                                     </div>
                                 </li>
