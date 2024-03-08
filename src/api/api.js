@@ -20,7 +20,8 @@ const movieApi = createApi({
             query: (args) => {
                 const params = new URLSearchParams(args);
                 return {url: `v1.4/movie?${params.toString()}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         }),
 
         getDetailedInfo: builder.query({
@@ -30,14 +31,16 @@ const movieApi = createApi({
                     params.append('selectFields', field);
                 });
                 return {url: `v1.4/movie?${params.toString()}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         }),
 
         getSearchMovies: builder.query({
             query: (request) => {
 
                 return {url: `v1.4/movie/search?query=${request}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         })
 
 

@@ -17,8 +17,8 @@ const DetailedContainer = () => {
 
     const {data: movies, isError, isLoading, isSuccess} = useGetDetailedInfoQuery(paramFromUrl.id);
 
-    const isMovieLiked = movies && movies.docs && movies.docs.length > 0 &&
-        favoriteMovie.some(movie => movie.id === movies.docs[0].id);
+    const isMovieLiked = movies && movies.length > 0 &&
+        favoriteMovie.some(movie => movie.id === movies[0].id);
 
     const handleAddToFavorites = (m) => {
         if (isAuth()) {
@@ -36,6 +36,7 @@ const DetailedContainer = () => {
             movies={movies}
             isMovieLiked={isMovieLiked}
             handleAddToFavorites={handleAddToFavorites}
+            navigate = {navigate}
         />
     )
 }

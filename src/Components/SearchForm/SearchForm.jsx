@@ -22,7 +22,9 @@ const SearchForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(isAuth()){dispatch(addHistoryItem(input));}
+        if (isAuth()) {
+            dispatch(addHistoryItem(input));
+        }
         navigate(`/search?query=${input}`);
         setIsOpen(false);
     }
@@ -82,9 +84,9 @@ const SearchForm = () => {
             </form>
             {input.length === 0 || isOpen && (
                 <div className={s.search} ref={suggestionRef}>
-                    {movies?.docs?.length ? (
+                    {movies?.length ? (
                         <ul className={s.searchList}>
-                            {movies.docs.map(movie =>
+                            {movies.map(movie =>
                                 <li
                                     className={s.searchItem}
                                     key={movie.id}
