@@ -1,15 +1,17 @@
-const Footer = (props) => {
+import {useContext} from "react";
+import {ThemeContext} from "../../App.jsx";
+
+const Footer = () => {
+    const {theme} = useContext(ThemeContext)
     return (
-        <div>
-            <footer className="bg-body-tertiary text-center container">
-
-                <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.05)"}}>
-                    © 2024 Copyright :
-                    <a className="text-body" href="https://starcinema.com/"> Starcinema.com</a>
-                </div>
-
-            </footer>
-        </div>
-    )
+        <footer className={`container text-center ${theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"}`}>
+            <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
+                © 2024 Copyright :
+                <a className={`text-${theme === "dark" ? "light" : "dark"}`} href="https://starcinema.com/">
+                    Starcinema.com
+                </a>
+            </div>
+        </footer>
+    );
 }
 export default Footer

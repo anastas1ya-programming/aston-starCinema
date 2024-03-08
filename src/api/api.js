@@ -7,7 +7,7 @@ const movieApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.kinopoisk.dev/',
         prepareHeaders: (headers) => {
-            const API_KEY = '0ZYHMMB-0PK4KA6-Q98FNTP-8XYEN0B'
+            const API_KEY = 'ZET3EKN-MGJ4H00-GPBRZFA-RDMMFW5'
             headers.set('Content-Type', 'application/json');
             headers.set('X-API-KEY', API_KEY);
             return headers;

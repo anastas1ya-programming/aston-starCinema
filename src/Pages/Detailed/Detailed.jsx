@@ -1,23 +1,6 @@
-import {useGetDetailedInfoQuery,} from "../../api/api.js";
 import s from "./Detailed.module.css"
-import {useNavigate, useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {useActions} from "../../Hooks/useActions.js";
-import {getFavorite} from "../../redux/favoriteMovieSlice.js";
 
-const Detailed = (props) => {
-    const {toggleFavorites} = useActions();
-
-    const favoriteMovie = useSelector(getFavorite)
-
-    const navigate = useNavigate();
-
-    const paramFromUrl = useParams();
-
-    const {data: movies, isError, isLoading, isSuccess} = useGetDetailedInfoQuery(paramFromUrl.id);
-
-    const isMovieLiked = movies && movies.docs && movies.docs.length > 0 &&
-        favoriteMovie.some(movie => movie.id === movies.docs[0].id);
+const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAddToFavorites}) => {
 
     return (
         <div className="container">
@@ -48,7 +31,7 @@ const Detailed = (props) => {
                             <ul>
                                 <li>
                                     <button onClick={() => {
-                                        toggleFavorites(currentMovie)
+                                        handleAddToFavorites(currentMovie)
 
                                     }} className="btn btn-danger ">{isMovieLiked ? 'Unlike' : 'Like'}</button>
                                 </li>

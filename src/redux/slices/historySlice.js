@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getHistoryLS} from "../utils/localStorageUtils.js";
+import {getUserHistoryLS} from "../../utils/localStorageUtils.js";
 import {v4 as uuidv4} from "uuid";
 
-let initialState = getHistoryLS();
+let initialState = getUserHistoryLS() || [];
 
 export const historySlice = createSlice({
     name: 'history',
@@ -19,13 +19,21 @@ export const historySlice = createSlice({
         },
         deleteHistoryItem(state, action) {
             state = state.filter((item) => item.id !== action.payload);
-
             return state;
 
         },
+        getUserHistory (state) {
+            state = getUserHistoryLS();
+            return state;
+        },
+
+        clearHistory(state){
+            state = [];
+            return state;
+        }
 
     }
 });
 export const getHistory = (state) => state.history
-export const {addHistoryItem, deleteHistoryItem} = historySlice.actions;
+export const {addHistoryItem, deleteHistoryItem, getUserHistory, clearHistory} = historySlice.actions;
 export default historySlice.reducer;
