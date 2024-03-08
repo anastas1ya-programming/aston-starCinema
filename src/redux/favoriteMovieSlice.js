@@ -4,8 +4,6 @@ import { getUserFavorites} from "../utils/localStorageUtils.js";
 
 let initialState = []
 
-debugger
-
 export const favoriteMovieSlice = createSlice({
     name: 'favoriteMovie',
     initialState,
@@ -16,7 +14,7 @@ export const favoriteMovieSlice = createSlice({
                 const index = state.findIndex(m => m.id === action.payload.id)
                 if (index !== -1) {
                     state.splice(index, 1)
-                    //return state
+
                 }
             } else {
                 state.push(action.payload)

@@ -6,6 +6,7 @@ import {getHistory} from "../../redux/historySlice.js";
 const History = () => {
     const history = useSelector(getHistory)
 
+
     if (history.length === 0) {
         return <div className="container"><h3>You have not searched anything yet!</h3></div>;
     }
@@ -15,7 +16,6 @@ const History = () => {
             <ul className={s.historyList}>
                 {history.map((item) =>
                    <HistoryItem item={item.value} id={item.id} key ={item.id}/> )}
-
             </ul>
 
         </div>

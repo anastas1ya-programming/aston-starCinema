@@ -1,16 +1,22 @@
+import React, { Suspense } from 'react';
 import './App.css'
+import {createContext, lazy, useEffect, useState} from "react";
+import {Route, Routes} from "react-router-dom";
 import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
-import {Route, Routes} from "react-router-dom";
-import History from "./Components/History/History.jsx";
-import Main from "./Components/Main/Main.jsx";
-import Favorites from "./Components/Favorites/Favorites.jsx";
-import Detailed from "./Components/Detailed/Detailed.jsx";
-import Search from "./Components/Search/Search.jsx";
-import {createContext, useEffect, useState} from "react";
-import Login from "./Components/Login/Login.jsx";
-import Registration from "./Components/Registration/Registration.jsx";
 import {PrivateRoute} from "./PrivateRoute.jsx";
+import {ErrorBoundary} from 'react-error-boundary';
+import {Fallback} from "./Components/ErrorFallback.jsx";
+
+
+const Main = lazy(() => import("./Components/Main/Main.jsx"));
+const History = lazy(() => import("./Components/History/History.jsx"));
+const Favorites = lazy(() => import("./Components/Favorites/Favorites.jsx"));
+const Detailed = lazy(() => import("./Components/Detailed/Detailed.jsx"));
+const Search = lazy(() => import("./Components/Search/Search.jsx"));
+const Login = lazy(() => import("./Components/Login/Login.jsx"));
+const Registration = lazy(() => import("./Components/Registration/Registration.jsx"));
+
 
 export const ThemeContext = createContext(null);
 
@@ -29,29 +35,46 @@ function App(props) {
             <div className="app-wrapper" id={theme}>
                 <Header></Header>
                 <div>
-                    <Routes>
-                        <Route path="/" element={<Main/>}/>
-                        <Route path='/history' element={<PrivateRoute />}>
-                            <Route
-                                path='/history'
-                                element={
-                                        <History />
-                                }
-                            />
-                        </Route>
-                        <Route path='/favorites' element={<PrivateRoute />}>
-                            <Route
-                                path='/favorites'
-                                element={
-                                    <Favorites />
-                                }
-                            />
-                        </Route>
-                        <Route path="/detailed/:id" element={<Detailed/>}/>
-                        <Route path="/search" element={<Search/>}/>
-                        <Route path="/login" element={<Login/>}/>
-                        <Route path="/registration" element={<Registration/>}/>
-                    </Routes>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Routes>
+                            <Route path="/" element={
+                                <ErrorBoundary FallbackComponent={Fallback}>
+                                    <Main/>
+                                </ErrorBoundary>
+                            }/>
+                            <Route path='/history' element={<PrivateRoute/>}>
+                                <Route
+                                    path='/history'
+                                    element={
+                                        <ErrorBoundary FallbackComponent={Fallback}>
+                                            <History/>
+                                        </ErrorBoundary>
+                                    }
+                                />
+                            </Route>
+                            <Route path='/favorites' element={<PrivateRoute/>}>
+                                <Route
+                                    path='/favorites'
+                                    element={
+                                        <ErrorBoundary FallbackComponent={Fallback}>
+                                            <Favorites/>
+                                        </ErrorBoundary>
+                                    }
+                                />
+                            </Route>
+                            <Route path="/detailed/:id" element={
+                                <ErrorBoundary FallbackComponent={Fallback}>
+                                    <Detailed/>
+                                </ErrorBoundary>
+                            }/>
+                            <Route path="/search" element={
+                                <ErrorBoundary FallbackComponent={Fallback}>
+                                    <Search/>
+                                </ErrorBoundary>}/>
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/registration" element={<Registration/>}/>
+                        </Routes>
+                    </Suspense>
                 </div>
                 <Footer></Footer>
 
