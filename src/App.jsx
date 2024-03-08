@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, {Suspense} from 'react';
 import './App.css'
 import {createContext, lazy, useEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
@@ -16,6 +16,7 @@ const DetailedContainer = lazy(() => import("./Pages/Detailed/DetailedContainer.
 const SearchContainer = lazy(() => import("./Pages/Search/SearchContainer.jsx"));
 const LoginContainer = lazy(() => import("./Pages/Login/LoginContainer.jsx"));
 const RegistrationContainer = lazy(() => import("./Pages/Registration/RegistrationContainer.jsx"));
+const NotFound = lazy(() => import("./Pages/NotFound/NotFound.jsx"));
 
 
 export const ThemeContext = createContext(null);
@@ -37,6 +38,7 @@ function App(props) {
                 <div>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
+                            <Route path="*" element={<NotFound/>}/>
                             <Route path="/" element={
                                 <ErrorBoundary FallbackComponent={Fallback}>
                                     <Main/>

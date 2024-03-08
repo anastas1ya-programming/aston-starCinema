@@ -18,7 +18,13 @@ const SearchForm = () => {
     const {data: movies} = useGetSearchMoviesQuery(debounceSearch, {skip: input.trim().length <= 0});
     const navigate = useNavigate();
     const suggestionRef = useRef(null);
+    const isSearchPage = location.pathname.startsWith('/search');
 
+    useEffect(()=>{
+        if(!isSearchPage){
+            setInput('')
+        }
+    }, [location.pathname])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -51,6 +57,7 @@ const SearchForm = () => {
             setIsOpen(false);
         }
     }
+
 
     useEffect(() => {
         document.addEventListener("mousedown", handleOutsideClick);
