@@ -1,4 +1,5 @@
 import s from "./Detailed.module.css"
+import {detailedPropTypes} from "../../types/types.js";
 
 const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAddToFavorites}) => {
 
@@ -51,5 +52,10 @@ const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAd
                 </div>)}
 
         </div>)
-}
+};
+
+Detailed.propTypes = detailedPropTypes;
+Detailed.defaultProps = {
+    name: "Movie Name"
+};
 export default Detailed

@@ -5,6 +5,7 @@ import {getFavorite} from "../../redux/slices/favoriteMovieSlice.js";
 import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";
 import {isAuth} from "../../utils/localStorageUtils.js";
+import {cardItemPropTypes} from "../../types/types.js";
 
 const CardItem = (props) => {
 
@@ -46,5 +47,7 @@ const CardItem = (props) => {
             </div>
         </div>
     );
+
 }
+CardItem.propTypes = cardItemPropTypes
 export default CardItem
