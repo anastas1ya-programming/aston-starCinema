@@ -1,15 +1,16 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-
 const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'description', 'genres', 'movieLength', 'seriesLength', 'totalSeriesLength', 'backdrop', 'alternativeName'];
+const apiKey = import.meta.env.VITE_API_KEY;
 const movieApi = createApi({
 
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.kinopoisk.dev/',
         prepareHeaders: (headers) => {
-            const API_KEY = '0ZYHMMB-0PK4KA6-Q98FNTP-8XYEN0B'
+
             headers.set('Content-Type', 'application/json');
-            headers.set('X-API-KEY', API_KEY);
+            headers.set('X-API-KEY', apiKey);
+            debugger;
             return headers;
         },
     }),
