@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {addHistoryItem} from "../../redux/slices/historySlice.js";
 import {useDebounce} from "../../Hooks/useDebounce.js";
 import {isAuth} from "../../utils/localStorageUtils.js";
+import moviePic from '../../assets/movie.png'
 
 const SearchForm = () => {
 
@@ -18,11 +19,19 @@ const SearchForm = () => {
     const {data: movies} = useGetSearchMoviesQuery(debounceSearch, {skip: input.trim().length <= 0});
     const navigate = useNavigate();
     const suggestionRef = useRef(null);
+    const isSearchPage = location.pathname.startsWith('/search');
 
+    useEffect(()=>{
+        if(!isSearchPage){
+            setInput('')
+        }
+    }, [location.pathname])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(isAuth()){dispatch(addHistoryItem(input));}
+        if (isAuth()) {
+            dispatch(addHistoryItem(input));
+        }
         navigate(`/search?query=${input}`);
         setIsOpen(false);
     }
@@ -49,6 +58,7 @@ const SearchForm = () => {
             setIsOpen(false);
         }
     }
+
 
     useEffect(() => {
         document.addEventListener("mousedown", handleOutsideClick);
@@ -82,23 +92,23 @@ const SearchForm = () => {
             </form>
             {input.length === 0 || isOpen && (
                 <div className={s.search} ref={suggestionRef}>
-                    {movies?.docs?.length ? (
+                    {movies?.length ? (
                         <ul className={s.searchList}>
-                            {movies.docs.map(movie =>
+                            {movies.map(movie =>
                                 <li
                                     className={s.searchItem}
                                     key={movie.id}
                                     onClick={() => handleClick(movie.name, movie.id)}
                                 >
                                     <div className={s.movieInfo}>
-                                        {movie.poster.url && (
+                                        {movie.poster && movie.poster.url ? (
                                             <img
                                                 src={movie.poster.url}
                                                 alt={movie.name}
                                                 className={s.movieImage}
                                             />
-                                        )}
-                                        <span>{movie.name}</span>
+                                        ) : (<img src={moviePic} className={s.movieImage}/>)}
+                                        <span>{movie.name || movie.alternativeName || 'No name'}</span>
                                     </div>
                                 </li>
                             )}

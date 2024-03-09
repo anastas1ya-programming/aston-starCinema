@@ -34,7 +34,7 @@ const Main = () => {
     return (
         <div className="container">
             <div className="row ">
-                {movies.docs.map(movie =>
+                {movies.map(movie =>
                     <CardItem title={movie.name} key={movie.id}
                               poster={movie.poster.url}
                               shortDescription={movie.shortDescription}

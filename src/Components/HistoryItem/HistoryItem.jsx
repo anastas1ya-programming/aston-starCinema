@@ -4,7 +4,7 @@ import {deleteHistoryItem} from "../../redux/slices/historySlice.js";
 import s from './HistoryItem.module.css'
 import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";
-
+import {historyItemPropTypes} from "../../types/types.js";
 
 const HistoryItem = (props) => {
     const dispatch = useDispatch();
@@ -24,4 +24,7 @@ const HistoryItem = (props) => {
         </li>
     );
 }
+
+HistoryItem.propTypes = historyItemPropTypes;
+
 export default HistoryItem

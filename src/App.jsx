@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react';
+import React, {createContext, lazy, Suspense, useEffect, useState} from 'react';
 import './App.css'
-import {createContext, lazy, useEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
 import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import {PrivateRoute} from "./PrivateRoute.jsx";
 import {ErrorBoundary} from 'react-error-boundary';
 import {Fallback} from "./Components/ErrorFallback.jsx";
+import {getThemeLS, setThemeLS} from "./utils/localStorageUtils.js";
 
 
 const Main = lazy(() => import("./Pages/Main/Main.jsx"));
@@ -16,15 +16,16 @@ const DetailedContainer = lazy(() => import("./Pages/Detailed/DetailedContainer.
 const SearchContainer = lazy(() => import("./Pages/Search/SearchContainer.jsx"));
 const LoginContainer = lazy(() => import("./Pages/Login/LoginContainer.jsx"));
 const RegistrationContainer = lazy(() => import("./Pages/Registration/RegistrationContainer.jsx"));
+const NotFound = lazy(() => import("./Pages/NotFound/NotFound.jsx"));
 
 
 export const ThemeContext = createContext(null);
 
-function App(props) {
-    const storedTheme = localStorage.getItem("theme");
+function App() {
+    const storedTheme = getThemeLS();
     const [theme, setTheme] = useState(storedTheme || "light");
     useEffect(() => {
-        localStorage.setItem("theme", theme);
+        setThemeLS(theme)
     }, [theme]);
 
     const toggleTheme = () => {
@@ -37,6 +38,7 @@ function App(props) {
                 <div>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
+                            <Route path="*" element={<NotFound/>}/>
                             <Route path="/" element={
                                 <ErrorBoundary FallbackComponent={Fallback}>
                                     <Main/>

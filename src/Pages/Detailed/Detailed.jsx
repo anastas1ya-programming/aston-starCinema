@@ -1,12 +1,13 @@
 import s from "./Detailed.module.css"
+import {detailedPropTypes} from "../../types/types.js";
 
-const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAddToFavorites}) => {
+const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAddToFavorites, navigate}) => {
 
     return (
         <div className="container">
             {isError && <h3>ERROR</h3>}
             {isLoading && <h3>Loading...</h3>}
-            {isSuccess && movies?.docs.map(currentMovie =>
+            {isSuccess && movies?.map(currentMovie =>
 
                 <div className={s.movie_card} id="ave">
                     <div className={s.info_section}>
@@ -51,5 +52,10 @@ const Detailed = ({isError, isLoading, isSuccess, movies, isMovieLiked, handleAd
                 </div>)}
 
         </div>)
-}
+};
+
+Detailed.propTypes = detailedPropTypes;
+Detailed.defaultProps = {
+    name: "Movie Name"
+};
 export default Detailed

@@ -44,7 +44,7 @@ export const getCurrent = () => {
     return currentUser;
 }
 
-export const removeCurrent = () =>{
+export const removeCurrent = () => {
     localStorage.removeItem('current_user')
 }
 
@@ -73,7 +73,7 @@ export const setUserHistory = (email, history) => {
 
 export const getUserHistoryLS = () => {
     const email = localStorage.getItem('current_user')
-    if (email){
+    if (email) {
         const user = JSON.parse(localStorage.getItem(email.slice(1, -1)));
         return user ? user.history : [];
     }
@@ -81,3 +81,9 @@ export const getUserHistoryLS = () => {
 
 }
 
+export const getThemeLS = () => {
+    return localStorage.getItem("theme");
+}
+export const setThemeLS = (theme) => {
+    localStorage.setItem("theme", theme);
+}

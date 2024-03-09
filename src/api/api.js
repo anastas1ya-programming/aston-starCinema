@@ -1,15 +1,16 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-
-const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'description', 'genres', 'movieLength', 'seriesLength', 'totalSeriesLength', 'backdrop'];
+const selectFields = ['name', 'year', 'id', 'rating', 'poster', 'description', 'genres', 'movieLength', 'seriesLength', 'totalSeriesLength', 'backdrop', 'alternativeName'];
+const apiKey = import.meta.env.VITE_API_KEY;
 const movieApi = createApi({
 
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://api.kinopoisk.dev/',
         prepareHeaders: (headers) => {
-            const API_KEY = 'ZET3EKN-MGJ4H00-GPBRZFA-RDMMFW5'
+
             headers.set('Content-Type', 'application/json');
-            headers.set('X-API-KEY', API_KEY);
+            headers.set('X-API-KEY', apiKey);
+            debugger;
             return headers;
         },
     }),
@@ -20,7 +21,8 @@ const movieApi = createApi({
             query: (args) => {
                 const params = new URLSearchParams(args);
                 return {url: `v1.4/movie?${params.toString()}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         }),
 
         getDetailedInfo: builder.query({
@@ -30,14 +32,16 @@ const movieApi = createApi({
                     params.append('selectFields', field);
                 });
                 return {url: `v1.4/movie?${params.toString()}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         }),
 
         getSearchMovies: builder.query({
             query: (request) => {
 
                 return {url: `v1.4/movie/search?query=${request}`};
-            }
+            },
+            transformResponse: (response) => {return response.docs}
         })
 
 
