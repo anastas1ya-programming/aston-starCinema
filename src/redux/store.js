@@ -23,5 +23,7 @@ const reducers = combineReducers({
 export const store = configureStore({
     reducer: reducers,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(movieApi.middleware, saveFavoritesMiddleware, setHistoryMiddleware, logInMiddleware, logOutMiddleware, createUserMiddleware)
-})
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }).concat(movieApi.middleware, saveFavoritesMiddleware, setHistoryMiddleware, logInMiddleware, logOutMiddleware, createUserMiddleware),
+});

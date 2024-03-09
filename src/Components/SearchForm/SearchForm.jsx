@@ -21,8 +21,8 @@ const SearchForm = () => {
     const suggestionRef = useRef(null);
     const isSearchPage = location.pathname.startsWith('/search');
 
-    useEffect(()=>{
-        if(!isSearchPage){
+    useEffect(() => {
+        if (!isSearchPage) {
             setInput('')
         }
     }, [location.pathname])
@@ -47,7 +47,6 @@ const SearchForm = () => {
         navigate(`/detailed/${id}`);
         setIsOpen(false);
     }
-
 
     const handleFormClick = () => {
         setIsOpen(true);

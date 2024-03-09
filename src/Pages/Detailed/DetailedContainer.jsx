@@ -7,6 +7,7 @@ import {isAuth} from "../../utils/localStorageUtils.js";
 import Detailed from "./Detailed.jsx";
 
 const DetailedContainer = () => {
+
     const {toggleFavorites} = useActions();
 
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const DetailedContainer = () => {
             movies={movies}
             isMovieLiked={isMovieLiked}
             handleAddToFavorites={handleAddToFavorites}
-            navigate = {navigate}
+            navigate={navigate}
         />
     )
 }

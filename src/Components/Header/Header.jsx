@@ -16,18 +16,16 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         dispatch(logOutUser())
         navigate('/')
     }
 
     return (
         <div className="container">
-
             <nav className={`navbar navbar-expand-lg ${theme === "dark" ? "bg-dark" : "bg-light"}`}>
                 <div className="container-fluid">
                     <NavLink className={`navbar-brand ${theme === "dark" ? "text-light" : "text-dark"}`} to="/"><Logo/></NavLink>
-
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -43,41 +41,42 @@ const Header = () => {
 
                         <ul className={`navbar-nav ms-auto mb-2 mb-lg-0 ${theme === "dark" ? "text-light" : "text-dark"}`}>
                             {isAuth() ? (<li className="nav-item">
-                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} aria-current="page" to="/favorites"><i
+                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
+                                         aria-current="page" to="/favorites"><i
                                     className="bi bi-heart" style={{fontSize: '1.5rem'}}></i></NavLink>
                             </li>) : null}
                             {isAuth() ? (<li className="nav-item">
-                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} to="/history">History</NavLink>
+                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
+                                         to="/history">History</NavLink>
 
-                            </li>): null}
+                            </li>) : null}
                             {isAuth() ? (
                                     <li className="nav-item">
                                         <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
-                                                 ><p>{user.username}</p></NavLink>
+                                        ><p>{user.username}</p></NavLink>
                                     </li>) :
                                 null
                             }
 
                             {!isAuth() ? (
-                                <li className="nav-item">
-                                    <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
-                                             to="/login">Log In</NavLink>
-                                </li>) :
+                                    <li className="nav-item">
+                                        <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
+                                                 to="/login">Log In</NavLink>
+                                    </li>) :
                                 (<li className="nav-item">
-                                <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`} onClick={()=>handleLogOut()}
-                                         to="/" >Log Out</NavLink>
-                            </li>)
+                                    <NavLink className={`nav-link ${theme === "dark" ? "text-light" : "text-dark"}`}
+                                             onClick={() => handleLogOut()}
+                                             to="/">Log Out</NavLink>
+                                </li>)
                             }
                             <li className="nav-item">
-                                <ThemeToggle />
+                                <ThemeToggle/>
                             </li>
                         </ul>
 
                     </div>
                 </div>
             </nav>
-
-
         </div>
 
     );

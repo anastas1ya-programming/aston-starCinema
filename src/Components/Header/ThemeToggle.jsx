@@ -2,7 +2,7 @@ import {useContext} from "react";
 import {ThemeContext} from "../../App.jsx";
 
 export const ThemeToggle = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const {theme, toggleTheme} = useContext(ThemeContext);
 
     const toggleIcon = () => {
         toggleTheme();

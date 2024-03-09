@@ -15,11 +15,11 @@ const Search = ({movies, isSuccess, isLoading, isError, handleClick}) => {
                         >
                             <div className={s.movieWrapper}>
                                 {movie.poster && movie.poster.url ? (
-                                <img
-                                    className={s.movieImage}
-                                    src={movie.poster.url}
-                                    alt={movie.name}
-                                />) : (<img src={moviePic} className={s.movieImage}/>)}
+                                    <img
+                                        className={s.movieImage}
+                                        src={movie.poster.url}
+                                        alt={movie.name}
+                                    />) : (<img src={moviePic} className={s.movieImage}/>)}
                                 <p>{movie.name || movie.alternativeName || 'No name'}</p>
                             </div>
 

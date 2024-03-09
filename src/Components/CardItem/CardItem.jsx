@@ -17,26 +17,28 @@ const CardItem = (props) => {
 
     const navigate = useNavigate();
 
-    const { theme } = useContext(ThemeContext);
+    const {theme} = useContext(ThemeContext);
 
-    const handleAddToFavorites =()=>{
-        if(isAuth()){
+    const handleAddToFavorites = () => {
+        if (isAuth()) {
             toggleFavorites(props.card)
-        } else{
+        } else {
             navigate('/login')
         }
     }
 
     return (
         <div className="col mb-4">
-            <div className={`card m-auto mb-2 h-100 ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`} style={{ width: "18rem" }}>
-                <img src={props.poster} className="card-img-top" alt={props.title} />
+            <div className={`card m-auto mb-2 h-100 ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`}
+                 style={{width: "18rem"}}>
+                <img src={props.poster} className="card-img-top" alt={props.title}/>
                 <div className={`card-body ${theme === "dark" ? "text-light" : "text-dark"}`}>
                     <h5 className="card-title">{props.title}</h5>
                     <p className="card-text"> {props.shortDescription}</p>
                 </div>
 
-                <div className={`card-footer d-flex justify-content-between align-items-center ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`}>
+                <div
+                    className={`card-footer d-flex justify-content-between align-items-center ${theme === "dark" ? "text-light bg-dark" : "bg-light"}`}>
                     <button onClick={handleAddToFavorites} className="btn btn-danger">
                         {isMovieLiked ? "Unlike" : "Like"}
                     </button>

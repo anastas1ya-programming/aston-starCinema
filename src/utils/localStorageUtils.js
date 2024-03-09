@@ -81,9 +81,9 @@ export const getUserHistoryLS = () => {
 
 }
 
-export const getThemeLS = () => {
+export const getAppTheme = () => {
     return localStorage.getItem("theme");
 }
-export const setThemeLS = (theme) => {
+export const setAppTheme = (theme) => {
     localStorage.setItem("theme", theme);
 }

@@ -1,13 +1,12 @@
-import React, {createContext, lazy, Suspense, useEffect, useState} from 'react';
+import React, {createContext, lazy, Suspense, useEffect, useMemo, useState} from 'react';
 import './App.css'
 import {Route, Routes} from "react-router-dom";
 import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
-import {PrivateRoute} from "./PrivateRoute.jsx";
+import {PrivateRoute} from "./Components/PrivateRoute.jsx";
 import {ErrorBoundary} from 'react-error-boundary';
 import {Fallback} from "./Components/ErrorFallback.jsx";
-import {getThemeLS, setThemeLS} from "./utils/localStorageUtils.js";
-
+import {getAppTheme, setAppTheme} from "./utils/localStorageUtils.js";
 
 const Main = lazy(() => import("./Pages/Main/Main.jsx"));
 const History = lazy(() => import("./Pages/History/History.jsx"));
@@ -22,17 +21,19 @@ const NotFound = lazy(() => import("./Pages/NotFound/NotFound.jsx"));
 export const ThemeContext = createContext(null);
 
 function App() {
-    const storedTheme = getThemeLS();
+    const storedTheme = getAppTheme();
     const [theme, setTheme] = useState(storedTheme || "light");
     useEffect(() => {
-        setThemeLS(theme)
+        setAppTheme(theme)
     }, [theme]);
 
     const toggleTheme = () => {
         setTheme((current) => (current === "light" ? "dark" : "light"));
     }
+    const contextValue = useMemo(() => ({ theme, toggleTheme }), [theme]);
+
     return (
-        <ThemeContext.Provider value={{theme, toggleTheme}}>
+        <ThemeContext.Provider value={contextValue}>
             <div className="app-wrapper" id={theme}>
                 <Header></Header>
                 <div>

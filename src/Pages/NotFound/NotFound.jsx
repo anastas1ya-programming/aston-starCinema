@@ -1,8 +1,8 @@
 import {useNavigate} from "react-router-dom";
 
-const NotFound = () =>{
+const NotFound = () => {
     const navigate = useNavigate();
-    return(
+    return (
         <div className="container">
             <div className="d-flex align-items-center justify-content-center vh-100">
                 <div className="text-center">
@@ -11,7 +11,7 @@ const NotFound = () =>{
                     <p className="lead">
                         The page you’re looking for doesn’t exist.
                     </p>
-                    <button className="btn btn-primary" onClick={()=>navigate('/')}>Go Home</button>
+                    <button className="btn btn-primary" onClick={() => navigate('/')}>Go Home</button>
                 </div>
             </div>
         </div>

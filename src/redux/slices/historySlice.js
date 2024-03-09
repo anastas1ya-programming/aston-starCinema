@@ -22,12 +22,12 @@ export const historySlice = createSlice({
             return state;
 
         },
-        getUserHistory (state) {
+        getUserHistory(state) {
             state = getUserHistoryLS();
             return state;
         },
 
-        clearHistory(state){
+        clearHistory(state) {
             state = [];
             return state;
         }

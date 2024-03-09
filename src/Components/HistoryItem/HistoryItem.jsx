@@ -9,7 +9,7 @@ import {historyItemPropTypes} from "../../types/types.js";
 const HistoryItem = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { theme } = useContext(ThemeContext);
+    const {theme} = useContext(ThemeContext);
 
     const handleDelete = (id) => {
         dispatch(deleteHistoryItem(id));

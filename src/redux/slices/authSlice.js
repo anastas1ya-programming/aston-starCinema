@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createUserLS, getCurrent, isUserDataCorrect, removeCurrent, setCurrent} from "../../utils/localStorageUtils.js";
-
+import {getCurrent, isUserDataCorrect} from "../../utils/localStorageUtils.js";
 
 let initialState = getCurrent() ||
     {
