@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSelector, createSlice} from "@reduxjs/toolkit";
 import {getUserFavorites} from "../../utils/localStorageUtils.js";
 
 
@@ -28,10 +28,13 @@ export const favoriteMovieSlice = createSlice({
             state = [];
             return state;
         }
-
-
     }
 });
-export const getFavorite = (state) => state.favoriteMovie
+export const getFavorite = (state) => state.favoriteMovie;
+export const selectIsMovieLiked = createSelector(
+    [getFavorite, (state, movies) => movies && movies.length > 0 ? movies[0].id : null],
+    (favoriteMovies, movieId) =>
+        favoriteMovies.some((movie) => movie.id === movieId)
+);
 export const {toggleFavorites, getFavoriteItem, clearMovies} = favoriteMovieSlice.actions;
 export default favoriteMovieSlice.reducer;

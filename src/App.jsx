@@ -1,12 +1,12 @@
-import React, {Suspense} from 'react';
+import React, {createContext, lazy, Suspense, useEffect, useState} from 'react';
 import './App.css'
-import {createContext, lazy, useEffect, useState} from "react";
 import {Route, Routes} from "react-router-dom";
 import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import {PrivateRoute} from "./PrivateRoute.jsx";
 import {ErrorBoundary} from 'react-error-boundary';
 import {Fallback} from "./Components/ErrorFallback.jsx";
+import {getThemeLS, setThemeLS} from "./utils/localStorageUtils.js";
 
 
 const Main = lazy(() => import("./Pages/Main/Main.jsx"));
@@ -21,11 +21,11 @@ const NotFound = lazy(() => import("./Pages/NotFound/NotFound.jsx"));
 
 export const ThemeContext = createContext(null);
 
-function App(props) {
-    const storedTheme = localStorage.getItem("theme");
+function App() {
+    const storedTheme = getThemeLS();
     const [theme, setTheme] = useState(storedTheme || "light");
     useEffect(() => {
-        localStorage.setItem("theme", theme);
+        setThemeLS(theme)
     }, [theme]);
 
     const toggleTheme = () => {

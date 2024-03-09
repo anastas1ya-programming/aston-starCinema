@@ -1,4 +1,4 @@
-const Registration = ({nameRef, emailRef, passwordRef, handleSubmit}) => {
+const Registration = ({nameRef, emailRef, passwordRef, handleSubmit, error}) => {
     return (
         <section className="mt-5">
             <div className="container">
@@ -36,11 +36,13 @@ const Registration = ({nameRef, emailRef, passwordRef, handleSubmit}) => {
                                                     placeholder="name@example.com"
                                                     required
                                                     ref={emailRef}
+
                                                 />
                                                 <label htmlFor="email" className="form-label">
                                                     Email
                                                 </label>
                                             </div>
+                                            {error && <p style={{color: 'red'}}>{error}</p>}
                                         </div>
                                         <div className="col-12">
                                             <div className="form-floating mb-3">

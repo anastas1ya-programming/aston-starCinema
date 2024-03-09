@@ -20,7 +20,7 @@ const Search = ({movies, isSuccess, isLoading, isError, handleClick}) => {
                                     src={movie.poster.url}
                                     alt={movie.name}
                                 />) : (<img src={moviePic} className={s.movieImage}/>)}
-                                <p>{movie.name}</p>
+                                <p>{movie.name || movie.alternativeName || 'No name'}</p>
                             </div>
 
                         </li>)}

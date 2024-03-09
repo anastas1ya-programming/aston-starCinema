@@ -108,7 +108,7 @@ const SearchForm = () => {
                                                 className={s.movieImage}
                                             />
                                         ) : (<img src={moviePic} className={s.movieImage}/>)}
-                                        <span>{movie.name}</span>
+                                        <span>{movie.name || movie.alternativeName || 'No name'}</span>
                                     </div>
                                 </li>
                             )}

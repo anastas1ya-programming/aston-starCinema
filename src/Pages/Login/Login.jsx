@@ -1,6 +1,14 @@
 import {NavLink} from "react-router-dom";
 
-const Login = ({emailRef, passwordRef, handleSubmit}) => {
+const Login = ({
+                   emailRef,
+                   passwordRef,
+                   handleSubmit,
+                   passwordError,
+                   emailError,
+                   onClearEmailError,
+                   onClearPasswordError
+               }) => {
 
     return (
         <section className="mt-5">
@@ -23,12 +31,14 @@ const Login = ({emailRef, passwordRef, handleSubmit}) => {
                                                     placeholder="name@example.com"
                                                     required
                                                     ref={emailRef}
+                                                    onChange={onClearEmailError}
 
                                                 />
                                                 <label htmlFor="email" className="form-label">
                                                     Email
                                                 </label>
                                             </div>
+                                            {emailError && <p style={{color: 'red'}}>{emailError}</p>}
                                         </div>
                                         <div className="col-12">
                                             <div className="form-floating mb-3">
@@ -40,11 +50,13 @@ const Login = ({emailRef, passwordRef, handleSubmit}) => {
                                                     placeholder="Password"
                                                     required
                                                     ref={passwordRef}
+                                                    onChange={onClearPasswordError}
                                                 />
                                                 <label htmlFor="password" className="form-label">
                                                     Password
                                                 </label>
                                             </div>
+                                            {passwordError && <p style={{color: 'red'}}>{passwordError}</p>}
                                         </div>
                                         <div className="col-12">
                                             <div className="d-flex gap-2 justify-content-between">
